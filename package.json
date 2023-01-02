@@ -26,6 +26,14 @@
     "lint": "npx eslint --fix src/**/*.{jsx,js,tsx,ts}",
     "format": "npx prettier --write src/**/*.{jsx,js,tsx,ts,json}"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(js|jsx|ts|tsx)": ["npm run lint", "npm run format", "git add"]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -56,6 +64,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.1"
   }
 }
