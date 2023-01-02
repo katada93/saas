@@ -24,7 +24,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "npx eslint --fix src/**/*.{jsx,js,tsx,ts}",
-    "format": "npx prettier --write src/**/*.{jsx,js,tsx,ts,json}"
+    "format": "npx prettier --write src/**/*.{jsx,js,tsx,ts,json}",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
