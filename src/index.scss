@@ -1,7 +1,25 @@
+:root {
+  --color-primary: #109c;
+  --color-warning: #ffb946;
+  --color-danger: #f7685b;
+  --color-success: #2ed47a;
+  --color-purple: #885af8;
+  --color-dark: #192a3e;
+  --color-table-dark: #323c47;
+  --color-table-gray: #707683;
+  --color-dark-blue: #334d6e;
+  --color-gray: #90a0b7;
+  --color-icon-gray: #c2cfe0;
+  --color-white: #fff;
+  --text-small: 12px;
+  --text-medium: 14px;
+  --text-large: 18px;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

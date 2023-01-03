@@ -4,7 +4,12 @@
     "es2021": true,
     "jest": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "airbnb-typescript", "prettier"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -25,6 +30,9 @@
     "no-param-reassign": 0,
     "no-duplicate-imports": 0,
     "react/button-has-type": 0,
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "react/function-component-definition": 0,
+    "arrow-body-style": 0,
+    "react/require-default-props": 0
   }
 }
