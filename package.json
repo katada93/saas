@@ -34,6 +34,7 @@
   },
   "lint-staged": {
     "**/*.{tsx,ts}": [
+      "stylelint -- fix",
       "prettier --write",
       "eslint"
     ]
