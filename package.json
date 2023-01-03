@@ -34,10 +34,10 @@
   },
   "lint-staged": {
     "**/*.{tsx,ts}": [
-      "stylelint -- fix",
       "prettier --write",
       "eslint"
-    ]
+    ],
+    "*.scss": "stylelint -- fix"
   },
   "eslintConfig": {
     "extends": [
