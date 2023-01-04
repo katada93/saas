@@ -1,4 +1,4 @@
-.button-component {
+.Button {
   padding: 11px 15px;
   font-weight: 600;
   font-size: var(--text-medium);
@@ -11,6 +11,7 @@
 
   &:disabled {
     cursor: no-drop;
+    opacity: 0.8;
   }
 }
 
@@ -27,7 +28,6 @@
   &:disabled {
     background: var(--color-gray);
     box-shadow: none;
-    opacity: 0.8;
   }
 }
 
