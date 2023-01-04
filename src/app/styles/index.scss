@@ -18,6 +18,17 @@
   --text-large: 18px;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: var(--text-medium);
+}
+
 body {
   margin: 0;
   color: var(--color-dark);

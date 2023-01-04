@@ -1,9 +1,11 @@
-/* eslint-disable react/jsx-props-no-spreading */
-
 import clsx from 'clsx';
 import styles from './Button.module.scss';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps
+  extends React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   children: React.ReactNode;
   className?: string;
   variant?: 'primary' | 'outline' | 'link';
@@ -17,8 +19,8 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      {...props}
-      className={clsx(className, styles.Button, styles[variant])}>
+      className={clsx(className, styles.Button, styles[variant])}
+      {...props}>
       {children}
     </button>
   );
