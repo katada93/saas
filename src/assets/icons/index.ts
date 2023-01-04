@@ -1,13 +1,15 @@
-import { ReactComponent as Dashboard } from './dashboard.svg';
-import { ReactComponent as Tasks } from './tasks.svg';
-import { ReactComponent as Contact } from './contacts.svg';
-import { ReactComponent as Logout } from './logout.svg';
-import { ReactComponent as Chat } from './chat.svg';
+import { ReactComponent as chat } from './chat.svg';
+import { ReactComponent as contact } from './contacts.svg';
+import { ReactComponent as dashboard } from './dashboard.svg';
+import { ReactComponent as deals } from './deals.svg';
+import { ReactComponent as logout } from './logout.svg';
+import { ReactComponent as tasks } from './tasks.svg';
 
 export const icons = {
-  Dashboard,
-  Tasks,
-  Contact,
-  Logout,
-  Chat,
+  chat,
+  contact,
+  dashboard,
+  deals,
+  logout,
+  tasks,
 };

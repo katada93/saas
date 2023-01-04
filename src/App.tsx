@@ -1,4 +1,4 @@
-import { Paper } from './components/ui/Paper/Paper';
+import { Paper, Icon } from 'components/ui';
 
 import styles from './App.module.scss';
 
@@ -8,6 +8,7 @@ function App() {
       <h1>SAAS App</h1>
       <Paper>
         <p>Hello</p>
+        <Icon name="chat" className={styles.icon} />
       </Paper>
     </div>
   );
