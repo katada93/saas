@@ -36,7 +36,8 @@
     "**/*.{tsx,ts}": [
       "prettier --write",
       "eslint"
-    ]
+    ],
+    "*.scss": "stylelint -- fix"
   },
   "eslintConfig": {
     "extends": [
