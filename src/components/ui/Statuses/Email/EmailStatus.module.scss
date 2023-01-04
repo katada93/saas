@@ -1,0 +1,25 @@
+.EmailStatus {
+  width: 85px;
+  padding: 6px 10px;
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: var(--text-small);
+  text-align: center;
+  border-radius: 4px;
+}
+
+.scheduled {
+  background: #885af8;
+}
+
+.sent {
+  background: var(--color-success);
+}
+
+.archived {
+  background: var(--color-danger);
+}
+
+.draft {
+  background-color: var(--color-warning);
+}
