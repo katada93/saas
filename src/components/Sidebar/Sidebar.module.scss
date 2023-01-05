@@ -1,0 +1,159 @@
+.Aside {
+  width: 6.4%;
+  min-height: 100vh;
+  padding: 0 15px;
+  overflow: hidden;
+  box-shadow: 1px 1px 15px 1px rgb(0 0 0 / 11.3%);
+  transition: 0.2s linear;
+
+  .header {
+    .headerLogo {
+      min-width: 80px;
+      transition: 0.2s linear;
+    }
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid #ebeff2;
+
+    span {
+      color: #109cf1;
+      font-weight: 600;
+      font-size: 19px;
+      font-style: normal;
+      line-height: 25px;
+    }
+  }
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+
+    .userLogo {
+      min-width: 46px;
+      height: 46px;
+      margin-right: 25px;
+      margin-left: 10px;
+      background-color: #109cf1;
+      border-radius: 50%;
+    }
+
+    .userName {
+      display: block;
+      width: fit-content;
+      min-width: 250px;
+      color: var(--color-dark);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    .userEmail {
+      width: fit-content;
+      color: var(--color-gray);
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  .navigation {
+    margin: 20px 4px;
+
+    .link {
+      display: flex;
+      align-items: center;
+      align-self: center;
+      min-height: 100%;
+      margin-bottom: 20px;
+      color: var(--color-dark-blue);
+      text-decoration: none;
+
+      .iconStroke {
+        min-width: 60px;
+        stroke: var(--color-icon-gray);
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        color: #109cf1;
+
+        .iconStroke {
+          stroke: #109cf1;
+        }
+      }
+
+      span {
+        margin-left: 17px;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: 0.01em;
+      }
+    }
+  }
+
+  .line {
+    margin-top: 100px;
+    border: 1px solid #ebeff2;
+  }
+
+  .toggle {
+    display: flex;
+    align-items: center;
+    margin-top: 200px;
+    color: var(--color-dark-blue);
+    text-decoration: none;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+
+    .iconStroke {
+      min-width: 60px;
+      fill: var(--color-icon-gray);
+    }
+
+    span {
+      min-width: 100px;
+      margin-left: 17px;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 20px;
+      letter-spacing: 0.01em;
+    }
+
+    &:hover {
+      color: #109cf1;
+
+      .iconStroke {
+        fill: #109cf1;
+        stroke: #109cf1;
+      }
+    }
+  }
+}
+
+.Aside.opened {
+  width: 17.5%;
+  transition: 0.2s linear;
+
+  .headerLogo {
+    margin-left: 40px;
+  }
+
+  .toggle {
+    .iconStroke {
+      fill: #109cf1;
+      stroke: #109cf1;
+    }
+
+    span {
+      color: #109cf1;
+    }
+  }
+}
