@@ -1,4 +1,6 @@
 .Button {
+  min-width: 160px;
+  min-height: 42px;
   padding: 11px 15px;
   font-weight: 600;
   font-size: var(--text-medium);
@@ -34,27 +36,21 @@
 .outline {
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
-
-  &:hover {
-    color: #34aff9;
-    border-color: #34aff9;
-  }
-
-  &:disabled {
-    color: var(--color-gray);
-    border-color: var(--color-gray);
-  }
 }
 
 .link {
   padding: 0;
   color: var(--color-primary);
+}
 
-  &:hover {
-    color: #34aff9;
-  }
+.link:hover,
+.outline:hover {
+  color: #34aff9;
+  border-color: #34aff9;
+}
 
-  &:disabled {
-    color: var(--color-gray);
-  }
+.link:disabled,
+.outline:disabled {
+  color: var(--color-gray);
+  border-color: var(--color-gray);
 }
