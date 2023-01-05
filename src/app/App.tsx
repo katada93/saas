@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { Paper, Icon, Button, Status } from 'components/ui';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 
-import './styles/index.scss';
+import styles from './styles/index.module.scss';
 
 function App() {
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
-  const handleToggle = () => {
+
+  const handleToggle = useCallback(() => {
     setIsOpenSidebar(!isOpenSidebar);
-  };
+  }, [isOpenSidebar]);
+
   return (
-    <div>
+    <div className={styles.App}>
       <h1>SAAS App</h1>
       <Paper>
         <p>Hello</p>
@@ -25,9 +27,8 @@ function App() {
         <Status color="warning">Sent</Status>
         <Status color="danger">Archived</Status>
         <Status color="secondary">Draft</Status>
-
-        <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
       </Paper>
+      <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
     </div>
   );
 }

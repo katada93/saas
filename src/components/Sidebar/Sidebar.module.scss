@@ -1,8 +1,12 @@
 .Aside {
-  width: 6.4%;
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 95px;
+  height: 100vh;
   padding: 0 15px;
   overflow: hidden;
+  background-color: #fff;
   box-shadow: 1px 1px 15px 1px rgb(0 0 0 / 11.3%);
   transition: 0.2s linear;
 
@@ -139,7 +143,7 @@
 }
 
 .Aside.opened {
-  width: 17.5%;
+  width: 250px;
   transition: 0.2s linear;
 
   .headerLogo {
