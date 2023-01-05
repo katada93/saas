@@ -4,11 +4,11 @@ import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
   isOpen: boolean;
-  onOpen: () => void;
+  onToggle: () => void;
   className?: string;
 }
-export const Sidebar = ({ isOpen, onOpen, className = '' }: SidebarProps) => {
-  const classes = clsx(styles.container, className, {
+export const Sidebar = ({ isOpen, onToggle, className = '' }: SidebarProps) => {
+  const classes = clsx(styles.Aside, className, {
     [styles.opened]: isOpen,
   });
 
@@ -19,7 +19,7 @@ export const Sidebar = ({ isOpen, onOpen, className = '' }: SidebarProps) => {
       </div>
 
       <div className={styles.userInfo}>
-        <div className={styles.userLogo}>{null}</div>
+        <div className={styles.userLogo} />
         <div className={styles.userDescription}>
           <div className={styles.userName}>
             <span>Adrashidov Adrashid</span>{' '}
@@ -54,8 +54,8 @@ export const Sidebar = ({ isOpen, onOpen, className = '' }: SidebarProps) => {
 
       <hr className={styles.line} />
 
-      <button onClick={onOpen} className={styles.logOut}>
-        <Icon name="logout" className={styles.iconStroke} />
+      <button onClick={onToggle} className={styles.toggle}>
+        <Icon name="toggle" className={styles.iconStroke} />
         <span>Toggle sidebar</span>
       </button>
     </aside>

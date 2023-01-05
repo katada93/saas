@@ -6,7 +6,10 @@ import { Sidebar } from 'components/Sidebar/Sidebar';
 import './styles/index.scss';
 
 function App() {
-  const [open, setOpen] = useState(false);
+  const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+  const handleToggle = () => {
+    setIsOpenSidebar(!isOpenSidebar);
+  };
   return (
     <div>
       <h1>SAAS App</h1>
@@ -23,7 +26,7 @@ function App() {
         <Status color="danger">Archived</Status>
         <Status color="secondary">Draft</Status>
 
-        <Sidebar isOpen={open} onOpen={() => setOpen(!open)} />
+        <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
       </Paper>
     </div>
   );

@@ -1,6 +1,6 @@
-.container {
-  width: 95px;
-  min-height: 98vh;
+.Aside {
+  width: 6.4%;
+  min-height: 100vh;
   padding: 0 15px;
   overflow: hidden;
   box-shadow: 1px 1px 15px 1px rgb(0 0 0 / 11.3%);
@@ -43,7 +43,7 @@
       display: block;
       width: fit-content;
       min-width: 250px;
-      color: #192a3e;
+      color: var(--color-dark);
       font-weight: 500;
       font-size: 14px;
       line-height: 21px;
@@ -51,7 +51,7 @@
 
     .userEmail {
       width: fit-content;
-      color: #90a0b7;
+      color: var(--color-gray);
       font-weight: 500;
       font-size: 11px;
       line-height: 16px;
@@ -68,12 +68,12 @@
       align-self: center;
       min-height: 100%;
       margin-bottom: 20px;
-      color: #334d6e;
+      color: var(--color-dark-blue);
       text-decoration: none;
 
       .iconStroke {
         min-width: 60px;
-        stroke: #bebebe;
+        stroke: var(--color-icon-gray);
       }
 
       &:last-child {
@@ -103,11 +103,11 @@
     border: 1px solid #ebeff2;
   }
 
-  .logOut {
+  .toggle {
     display: flex;
     align-items: center;
     margin-top: 200px;
-    color: #334d6e;
+    color: var(--color-dark-blue);
     text-decoration: none;
     background-color: inherit;
     border: none;
@@ -115,7 +115,7 @@
 
     .iconStroke {
       min-width: 60px;
-      fill: #bcbcbc;
+      fill: var(--color-icon-gray);
     }
 
     span {
@@ -138,7 +138,7 @@
   }
 }
 
-.container.opened {
+.Aside.opened {
   width: 17.5%;
   transition: 0.2s linear;
 
@@ -146,7 +146,7 @@
     margin-left: 40px;
   }
 
-  .logOut {
+  .toggle {
     .iconStroke {
       fill: #109cf1;
       stroke: #109cf1;
