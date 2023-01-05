@@ -1,0 +1,159 @@
+.container {
+  width: 95px;
+  min-height: 98vh;
+  padding: 0 15px;
+  overflow: hidden;
+  box-shadow: 1px 1px 15px 1px rgb(0 0 0 / 11.3%);
+  transition: 0.2s linear;
+
+  .header {
+    .headerLogo {
+      min-width: 80px;
+      transition: 0.2s linear;
+    }
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid #ebeff2;
+
+    span {
+      color: #109cf1;
+      font-weight: 600;
+      font-size: 19px;
+      font-style: normal;
+      line-height: 25px;
+    }
+  }
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+
+    .userLogo {
+      min-width: 46px;
+      height: 46px;
+      margin-right: 25px;
+      margin-left: 10px;
+      background-color: #109cf1;
+      border-radius: 50%;
+    }
+
+    .userName {
+      display: block;
+      width: fit-content;
+      min-width: 250px;
+      color: #192a3e;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    .userEmail {
+      width: fit-content;
+      color: #90a0b7;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  .navigation {
+    margin: 20px 4px;
+
+    .link {
+      display: flex;
+      align-items: center;
+      align-self: center;
+      min-height: 100%;
+      margin-bottom: 20px;
+      color: #334d6e;
+      text-decoration: none;
+
+      .iconStroke {
+        min-width: 60px;
+        stroke: #bebebe;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        color: #109cf1;
+
+        .iconStroke {
+          stroke: #109cf1;
+        }
+      }
+
+      span {
+        margin-left: 17px;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: 0.01em;
+      }
+    }
+  }
+
+  .line {
+    margin-top: 100px;
+    border: 1px solid #ebeff2;
+  }
+
+  .logOut {
+    display: flex;
+    align-items: center;
+    margin-top: 200px;
+    color: #334d6e;
+    text-decoration: none;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+
+    .iconStroke {
+      min-width: 60px;
+      fill: #bcbcbc;
+    }
+
+    span {
+      min-width: 100px;
+      margin-left: 17px;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 20px;
+      letter-spacing: 0.01em;
+    }
+
+    &:hover {
+      color: #109cf1;
+
+      .iconStroke {
+        fill: #109cf1;
+        stroke: #109cf1;
+      }
+    }
+  }
+}
+
+.container.opened {
+  width: 17.5%;
+  transition: 0.2s linear;
+
+  .headerLogo {
+    margin-left: 40px;
+  }
+
+  .logOut {
+    .iconStroke {
+      fill: #109cf1;
+      stroke: #109cf1;
+    }
+
+    span {
+      color: #109cf1;
+    }
+  }
+}
