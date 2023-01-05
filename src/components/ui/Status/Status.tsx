@@ -5,17 +5,17 @@ import styles from './Status.module.scss';
 interface StatusProps {
   children: React.ReactNode;
   className?: string;
-  variant?: 'purple' | 'green' | 'red' | 'orange';
+  color?: 'success' | 'warning' | 'danger' | 'secondary';
 }
 
 export const Status = ({
   className = '',
-  variant = 'green',
+  color = 'success',
   children,
 }: StatusProps) => {
   return (
-    <div className={clsx(className, styles.Status, styles[variant])}>
+    <span className={clsx(styles.Status, styles[color], className)}>
       {children}
-    </div>
+    </span>
   );
 };

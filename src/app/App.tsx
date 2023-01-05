@@ -14,10 +14,10 @@ function App() {
         <Button variant="link">CLick</Button>
 
         <Status>Default</Status>
-        <Status variant="purple">Scheduled</Status>
-        <Status variant="green">Sent</Status>
-        <Status variant="red">Archived</Status>
-        <Status variant="orange">Draft</Status>
+        <Status color="success">Scheduled</Status>
+        <Status color="warning">Sent</Status>
+        <Status color="danger">Archived</Status>
+        <Status color="secondary">Draft</Status>
       </Paper>
     </div>
   );

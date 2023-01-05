@@ -1,27 +1,28 @@
 .Status {
-  width: fit-content;
-  min-width: 85px;
-  min-height: 22px;
-  padding: 7px 13px;
+  display: inline-block;
+  width: 84px;
+  height: 22px;
+  padding: 3px 8px;
   color: var(--color-white);
   font-weight: 600;
   font-size: var(--text-small);
+  line-height: 17px;
   text-align: center;
   border-radius: 4px;
 }
 
-.purple {
+.secondary {
   background: var(--color-secondary);
 }
 
-.green {
+.success {
   background: var(--color-success);
 }
 
-.red {
+.danger {
   background: var(--color-danger);
 }
 
-.orange {
+.warning {
   background: var(--color-warning);
 }
