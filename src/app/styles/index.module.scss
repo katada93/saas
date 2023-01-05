@@ -40,5 +40,10 @@ body {
 }
 
 .App {
+  padding-left: 92px;
+  transition: padding 0.2s linear;
+}
+
+.isOpenSidebar {
   padding-left: 250px;
 }
