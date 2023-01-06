@@ -3,22 +3,23 @@ import React from 'react';
 import styles from './Table.module.scss';
 
 interface TableProps {
-  data: Array<{ [key: string]: any }>;
+  tableHead: Array<any>;
+  tableBody: Array<{ [key: string]: any }>;
 }
 
-export const Table: React.FC<TableProps> = ({ data }) => {
+export const Table: React.FC<TableProps> = ({ tableHead, tableBody }) => {
   return (
     <table className={styles.Table}>
       <thead>
         <tr>
-          {Object.keys(data[0]).map((key) => (
-            <th key={key}>{key}</th>
-          ))}
+          {tableHead.map((item, index) => {
+            return <th key={index?.toString()}>{item}</th>;
+          })}
         </tr>
       </thead>
       <tbody>
-        {data.map((row) => (
-          <tr>
+        {tableBody.map((row, index) => (
+          <tr key={index?.toString()}>
             {Object.values(row).map((cell) => (
               <td>{cell}</td>
             ))}
