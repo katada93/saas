@@ -2,26 +2,28 @@ import React from 'react';
 
 import styles from './Table.module.scss';
 
+type DisplayValue = string | number | JSX.Element;
+
 interface TableProps {
-  tableHead: Array<any>;
-  tableBody: Array<{ [key: string]: any }>;
+  header: Array<{ value: string; displayValue: DisplayValue }>;
+  data: Array<Record<string, DisplayValue>>;
 }
 
-export const Table: React.FC<TableProps> = ({ tableHead, tableBody }) => {
+export const Table = ({ header, data }: TableProps) => {
   return (
     <table className={styles.Table}>
       <thead>
         <tr>
-          {tableHead.map((item, index) => {
-            return <th key={index?.toString()}>{item}</th>;
+          {header.map(({ value, displayValue }) => {
+            return <th key={value}>{displayValue}</th>;
           })}
         </tr>
       </thead>
       <tbody>
-        {tableBody.map((row, index) => (
-          <tr key={index?.toString()}>
-            {Object.values(row).map((cell) => (
-              <td>{cell}</td>
+        {data.map((user) => (
+          <tr key={user.email as string}>
+            {header.map(({ value }) => (
+              <td key={value}>{user[value]}</td>
             ))}
           </tr>
         ))}

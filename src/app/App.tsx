@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import clsx from 'clsx';
 
-import { Paper, Icon, Button, Status } from 'components/ui';
+import { Paper, Icon, Button, Status, Table } from 'components/ui';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 
 import styles from './styles/index.module.scss';
@@ -13,24 +13,53 @@ function App() {
     setIsOpenSidebar(!isOpenSidebar);
   }, [isOpenSidebar]);
 
+  const contacts = [
+    { value: 'select', displayValue: <input type="checkbox" /> },
+    { value: 'name', displayValue: 'Name' },
+    { value: 'email', displayValue: 'Email' },
+    { value: 'company', displayValue: 'Company Name' },
+    { value: 'role', displayValue: 'Role' },
+    { value: 'forecast', displayValue: 'Forecast' },
+    { value: 'recent', displayValue: 'Recent activity' },
+  ];
+
+  const tableData = [
+    {
+      name: 'Lindsey',
+      email: 'lindsey@gmail.com',
+      company: 'Hatchbuck',
+      select: <input type="checkbox" />,
+      role: 'Manager',
+      forecast: '50 %',
+      recent: '5 Minutes ago',
+    },
+    {
+      name: 'Stroud',
+      email: 'stroud@gmail.com',
+      select: <input type="checkbox" />,
+      company: 'Hatchbuck',
+      role: 'Manager',
+      forecast: '25 %',
+      recent: '15 Minutes ago',
+    },
+  ];
+
   return (
     <div
       className={clsx(styles.App, { [styles.isOpenSidebar]: isOpenSidebar })}>
       <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
 
-      <Paper>
-        <p>Hello</p>
-        <Icon name="chat" />
-        <Button>CLick</Button>
-        <Button variant="outline">CLick</Button>
-        <Button variant="link">CLick</Button>
+      <div className={styles.content}>
+        <Paper>
+          <Icon name="chat" />
+          <Button>CLick</Button>
 
-        <Status>Default</Status>
-        <Status color="success">Scheduled</Status>
-        <Status color="warning">Sent</Status>
-        <Status color="danger">Archived</Status>
-        <Status color="secondary">Draft</Status>
-      </Paper>
+          <Status>Default</Status>
+          <Status color="success">Scheduled</Status>
+          <Status color="warning">Sent</Status>
+        </Paper>
+        <Table header={contacts} data={tableData} />
+      </div>
     </div>
   );
 }

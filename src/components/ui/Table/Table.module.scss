@@ -1,11 +1,15 @@
 .Table {
   width: 100%;
+  margin-top: 10px;
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
   letter-spacing: 0.01em;
   text-align: left;
+  background-color: #fff;
+  border-radius: 5px;
   border-collapse: collapse;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 6%);
 
   tbody {
     tr {
