@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/indent */
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import tasksSlice from 'features/tasks/TaskSlice';
-import counterReducer from '../features/counter/counterSlice';
+import tasksReducer from 'features/tasks/taskSlice';
+import counterReducer from 'features/counter/counterSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    tasks: tasksSlice,
+    tasks: tasksReducer,
   },
 });
 

@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import { Icon } from 'components/ui';
+import { Icon } from 'shared/ui';
 
 import styles from './Sidebar.module.scss';
 
