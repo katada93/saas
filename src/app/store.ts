@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/indent */
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import tasksReducer from 'features/tasks/taskSlice';
 import counterReducer from 'features/counter/counterSlice';

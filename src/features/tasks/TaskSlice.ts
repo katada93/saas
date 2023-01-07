@@ -1,57 +1,142 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from '@reduxjs/toolkit';
 
-export interface Task {
-  id: string;
-  title: string;
-  text: string;
-  state: string;
-  userId: string;
-  branchId: string;
-  points: number;
-  time: number;
-  message: string[];
-}
+import { RootState } from 'app/store';
+import { Task } from 'shared/models/task.model';
+import { TaskService } from 'shared/services/task.service';
 
 export interface TasksState {
-  tasks: Task[];
-  loading: boolean;
-  error: string | null;
+  taskList: Task[];
+  // возможно сделаем отдельный слайс для task
+  task: Task;
+  isLoading: boolean;
+  error: string;
 }
 
 const initialState: TasksState = {
-  tasks: [],
-  loading: false,
-  error: null,
+  taskList: [],
+  // возможно сделаем отдельный слайс для task
+  task: {} as Task,
+  isLoading: false,
+  error: '',
 };
 
-export const getTasks = createAsyncThunk('tasks/fetch', async (_, thunkAPI) => {
-  try {
-    const res = await axios.get<Task[]>('/spreader/tasks');
-    return res.data;
-  } catch (error: any) {
-    return thunkAPI.rejectWithValue(error);
-  }
-});
+export const getTaskList = createAsyncThunk(
+  'tasks/getTaskList',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await TaskService.getAll();
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const getTaskById = createAsyncThunk(
+  'tasks/getTaskById',
+  async (id: number | string, thunkAPI) => {
+    try {
+      const { data } = await TaskService.getById(id);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const getTaskByBranch = createAsyncThunk(
+  'tasks/getTaskByBranch',
+  async (branchId: number | string, thunkAPI) => {
+    try {
+      const { data } = await TaskService.getByBranch(branchId);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
 
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {},
+  reducers: {
+    tasksRequestFailed: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(getTasks.pending, (state) => {
-        state.loading = true;
+      .addCase(getTaskList.pending, (state) => {
+        state.isLoading = true;
+        state.error = '';
       })
-      .addCase(getTasks.fulfilled, (state, action) => {
-        state.loading = false;
-        state.tasks = action.payload;
+      .addCase(getTaskList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.taskList = action.payload;
+        state.error = '';
       })
-      .addCase(getTasks.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message as string;
+      .addCase(getTaskList.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || '';
+      })
+      .addCase(getTaskById.pending, (state) => {
+        state.isLoading = true;
+        state.error = '';
+      })
+      .addCase(getTaskById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.task = action.payload;
+        state.error = '';
+      })
+      .addCase(getTaskById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || '';
+      })
+      .addCase(getTaskByBranch.pending, (state) => {
+        state.isLoading = true;
+        state.error = '';
+      })
+      .addCase(getTaskByBranch.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.task = action.payload;
+        state.error = '';
+      })
+      .addCase(getTaskByBranch.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || '';
       });
   },
 });
+
+// const { } = tasksSlice.actions;
+
+// Селекторы
+
+const selectTasksState = (state: RootState) => state.tasks;
+
+export const selectTaskList = createSelector(
+  selectTasksState,
+  (state) => state.taskList,
+);
+
+export const selectTask = createSelector(
+  selectTasksState,
+  (state) => state.task,
+);
+
+export const selectTasksLoading = createSelector(
+  selectTasksState,
+  (state) => state.isLoading,
+);
+
+export const selectTasksError = createSelector(
+  selectTasksState,
+  (state) => state.error,
+);
 
 export default tasksSlice.reducer;
