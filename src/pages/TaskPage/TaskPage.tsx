@@ -1,10 +1,10 @@
-import { Button } from 'components/ui';
+import { Button } from 'shared/ui';
 import clsx from 'clsx';
-import styles from './SingleTask.module.scss';
+import styles from './TaskPage.module.scss';
 
-export const SingleTask = () => {
+export const TaskPage = () => {
   return (
-    <div className={clsx(styles.SingleTask)}>
+    <div className={clsx(styles.TaskPage)}>
       <h1>Заголовок задачи</h1>
 
       <div className={styles.options}>

@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
 import clsx from 'clsx';
 
-// import { Paper, Icon, Button, Status } from 'components/ui';
+import { TaskPage } from 'pages';
 import { Sidebar } from 'components/Sidebar/Sidebar';
-import { SingleTask } from 'pages/SingleTask/SingleTask';
+
 import styles from './styles/index.module.scss';
 
 function App() {
@@ -18,21 +18,9 @@ function App() {
       className={clsx(styles.App, { [styles.isOpenSidebar]: isOpenSidebar })}>
       <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
 
-      {/* <Paper>
-        <p>Hello</p>
-        <Icon name="chat" />
-        <Button>CLick</Button>
-        <Button variant="outline">CLick</Button>
-        <Button variant="link">CLick</Button>
-
-        <Status>Default</Status>
-        <Status color="success">Scheduled</Status>
-        <Status color="warning">Sent</Status>
-        <Status color="danger">Archived</Status>
-        <Status color="secondary">Draft</Status>
-      </Paper> */}
-
-      <SingleTask />
+      <div className={styles.content}>
+        <TaskPage />
+      </div>
     </div>
   );
 }
