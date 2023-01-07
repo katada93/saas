@@ -2,6 +2,7 @@
   min-width: 160px;
   min-height: 42px;
   padding: 11px 15px;
+  color: var(--color-white);
   font-weight: 600;
   font-size: var(--text-medium);
   background: transparent;
@@ -53,4 +54,20 @@
 .outline:disabled {
   color: var(--color-gray);
   border-color: var(--color-gray);
+}
+
+.success {
+  background-color: var(--color-success);
+
+  &:hover {
+    background-color: #229f5b;
+  }
+}
+
+.danger {
+  background-color: var(--color-danger);
+
+  &:hover {
+    background-color: #c95449;
+  }
 }
