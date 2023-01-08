@@ -8,7 +8,7 @@ import {
   selectTaskList,
   selectTasksLoading,
   selectTasksError,
-} from 'features/tasks/taskSlice';
+} from 'features/tasks/TaskSlice';
 import { useAppDispatch, useAppSelector } from './hooks';
 
 import styles from './styles/index.module.scss';

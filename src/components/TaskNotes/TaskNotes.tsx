@@ -1,5 +1,7 @@
-const TaskNotes = () => {
-  return <div>task notes</div>;
+export const TaskNotes = () => {
+  return (
+    <div>
+      <textarea>asdf</textarea>
+    </div>
+  );
 };
-
-export default TaskNotes;
