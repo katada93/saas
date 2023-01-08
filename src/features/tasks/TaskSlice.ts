@@ -29,9 +29,10 @@ export const getTaskList = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await TaskService.getAll();
+
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -43,7 +44,7 @@ export const getTaskById = createAsyncThunk(
       const { data } = await TaskService.getById(id);
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -55,7 +56,7 @@ export const getTaskByBranch = createAsyncThunk(
       const { data } = await TaskService.getByBranch(branchId);
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -82,7 +83,7 @@ export const tasksSlice = createSlice({
       })
       .addCase(getTaskList.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || '';
+        state.error = action.payload as string;
       })
       .addCase(getTaskById.pending, (state) => {
         state.isLoading = true;
@@ -95,7 +96,7 @@ export const tasksSlice = createSlice({
       })
       .addCase(getTaskById.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || '';
+        state.error = action.payload as string;
       })
       .addCase(getTaskByBranch.pending, (state) => {
         state.isLoading = true;
@@ -108,7 +109,7 @@ export const tasksSlice = createSlice({
       })
       .addCase(getTaskByBranch.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || '';
+        state.error = action.payload as string;
       });
   },
 });
