@@ -14,7 +14,7 @@ import {
   // useAppSelector
 } from './hooks';
 
-import styles from './styles/index.module.scss';
+import './styles/index.scss';
 
 function App() {
   // const taskList = useAppSelector(selectTaskList);
@@ -22,8 +22,6 @@ function App() {
   // const error = useAppSelector(selectTasksError);
   const dispatch = useAppDispatch();
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
-
-  // console.log(taskList, isLoading, error);
 
   const handleToggle = useCallback(() => {
     setIsOpenSidebar(!isOpenSidebar);
@@ -34,11 +32,10 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div
-      className={clsx(styles.App, { [styles.isOpenSidebar]: isOpenSidebar })}>
+    <div className={clsx('App', { isOpenSidebar })}>
       <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
 
-      <div className={styles.content}>
+      <div className="content">
         <Paper>
           <Icon name="chat" />
           <Button>CLick</Button>
