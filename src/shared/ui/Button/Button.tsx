@@ -8,7 +8,7 @@ interface ButtonProps
   > {
   children: React.ReactNode;
   className?: string;
-  variant?: 'primary' | 'outline' | 'link';
+  variant?: 'primary' | 'outline' | 'link' | 'success' | 'danger';
 }
 
 export const Button = ({
