@@ -1,11 +1,13 @@
-import React from 'react';
-
 import styles from './Table.module.scss';
 
 type DisplayValue = string | number | JSX.Element;
 
 interface TableProps {
-  header: Array<{ value: string; displayValue: DisplayValue }>;
+  header: Array<{
+    value: string;
+    displayValue: DisplayValue;
+    onSort?: (value: string, sort?: 'asc' | 'desc') => void;
+  }>;
   data: Array<Record<string, DisplayValue>>;
 }
 
@@ -14,16 +16,23 @@ export const Table = ({ header, data }: TableProps) => {
     <table className={styles.Table}>
       <thead>
         <tr>
-          {header.map(({ value, displayValue }) => {
-            return <th key={value}>{displayValue}</th>;
+          {header.map(({ value, displayValue, onSort }) => {
+            return (
+              <th
+                onClick={onSort ? () => onSort(value) : undefined}
+                key={value}>
+                {displayValue}
+              </th>
+            );
           })}
         </tr>
       </thead>
       <tbody>
-        {data.map((user) => (
-          <tr key={user.email as string}>
+        {data.map((item, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <tr key={index}>
             {header.map(({ value }) => (
-              <td key={value}>{user[value]}</td>
+              <td key={value}>{item[value]}</td>
             ))}
           </tr>
         ))}
