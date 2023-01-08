@@ -1,10 +1,10 @@
 import { Button } from 'components/ui';
-import clsx from 'clsx';
+import { TaskNotes } from 'components/TaskNotes/TaskNotes';
 import styles from './SingleTask.module.scss';
 
 export const SingleTask = () => {
   return (
-    <div className={clsx(styles.SingleTask)}>
+    <div className={styles.SingleTask}>
       <h1>Заголовок задачи</h1>
 
       <div className={styles.options}>
@@ -16,7 +16,7 @@ export const SingleTask = () => {
         </div>
       </div>
 
-      <div className={clsx(styles.taskText)}>
+      <div className={styles.taskText}>
         <p>
           Таким образом постоянный количественный рост и сфера нашей активности
           влечет за собой процесс внедрения и модернизации позиций, занимаемых
@@ -37,6 +37,8 @@ export const SingleTask = () => {
         </p>
       </div>
       <Button variant="success">Взять в работу</Button>
+
+      <TaskNotes />
     </div>
   );
 };
