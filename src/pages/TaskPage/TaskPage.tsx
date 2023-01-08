@@ -1,10 +1,10 @@
-import { Button } from 'components/ui';
+import { Button } from 'shared/ui';
 import { TaskNotes } from 'components/TaskNotes/TaskNotes';
-import styles from './SingleTask.module.scss';
+import styles from './TaskPage.module.scss';
 
-export const SingleTask = () => {
+export const TaskPage = () => {
   return (
-    <div className={styles.SingleTask}>
+    <div className={styles.TaskPage}>
       <h1>Заголовок задачи</h1>
 
       <div className={styles.options}>

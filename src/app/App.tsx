@@ -1,38 +1,42 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import clsx from 'clsx';
 
-// import { Paper, Icon, Button, Status } from 'components/ui';
+import { TaskPage } from 'pages';
 import { Sidebar } from 'components/Sidebar/Sidebar';
-import { SingleTask } from 'pages/SingleTask/SingleTask';
+import {
+  getTaskList,
+  selectTaskList,
+  selectTasksLoading,
+  selectTasksError,
+} from 'features/tasks/TaskSlice';
+import { useAppDispatch, useAppSelector } from './hooks';
+
 import styles from './styles/index.module.scss';
 
 function App() {
+  const taskList = useAppSelector(selectTaskList);
+  const isLoading = useAppSelector(selectTasksLoading);
+  const error = useAppSelector(selectTasksError);
+  const dispatch = useAppDispatch();
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
+  console.log(taskList, isLoading, error);
 
   const handleToggle = useCallback(() => {
     setIsOpenSidebar(!isOpenSidebar);
   }, [isOpenSidebar]);
+
+  useEffect(() => {
+    dispatch(getTaskList());
+  }, [dispatch]);
 
   return (
     <div
       className={clsx(styles.App, { [styles.isOpenSidebar]: isOpenSidebar })}>
       <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
 
-      {/* <Paper>
-        <p>Hello</p>
-        <Icon name="chat" />
-        <Button>CLick</Button>
-        <Button variant="outline">CLick</Button>
-        <Button variant="link">CLick</Button>
-
-        <Status>Default</Status>
-        <Status color="success">Scheduled</Status>
-        <Status color="warning">Sent</Status>
-        <Status color="danger">Archived</Status>
-        <Status color="secondary">Draft</Status>
-      </Paper> */}
-
-      <SingleTask />
+      <div className={styles.content}>
+        <TaskPage />
+      </div>
     </div>
   );
 }
