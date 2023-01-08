@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import clsx from 'clsx';
 
-import { TaskPage } from 'pages';
+import { Paper, Icon, Button, Status, Table } from 'shared/ui';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import {
   getTaskList,
@@ -25,6 +25,37 @@ function App() {
     setIsOpenSidebar(!isOpenSidebar);
   }, [isOpenSidebar]);
 
+  const contacts = [
+    { value: 'select', displayValue: <input type="checkbox" /> },
+    { value: 'name', displayValue: 'Name' },
+    { value: 'email', displayValue: 'Email' },
+    { value: 'company', displayValue: 'Company Name' },
+    { value: 'role', displayValue: 'Role' },
+    { value: 'forecast', displayValue: 'Forecast' },
+    { value: 'recent', displayValue: 'Recent activity' },
+  ];
+
+  const tableData = [
+    {
+      name: 'Lindsey',
+      email: 'lindsey@gmail.com',
+      company: 'Hatchbuck',
+      select: <input type="checkbox" />,
+      role: 'Manager',
+      forecast: '50 %',
+      recent: '5 Minutes ago',
+    },
+    {
+      name: 'Stroud',
+      email: 'stroud@gmail.com',
+      select: <input type="checkbox" />,
+      company: 'Hatchbuck',
+      role: 'Manager',
+      forecast: '25 %',
+      recent: '15 Minutes ago',
+    },
+  ];
+
   useEffect(() => {
     dispatch(getTaskList());
   }, [dispatch]);
@@ -35,7 +66,15 @@ function App() {
       <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
 
       <div className={styles.content}>
-        <TaskPage />
+        <Paper>
+          <Icon name="chat" />
+          <Button>CLick</Button>
+
+          <Status>Default</Status>
+          <Status color="success">Scheduled</Status>
+          <Status color="warning">Sent</Status>
+          <Table header={contacts} data={tableData} />
+        </Paper>
       </div>
     </div>
   );
