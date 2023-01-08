@@ -1,35 +1,20 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import clsx from 'clsx';
 
 import { Paper, Icon, Button, Status } from 'shared/ui';
 import { Sidebar, UsersTable } from 'components';
-import {
-  getTaskList,
-  // selectTaskList,
-  // selectTasksLoading,
-  // selectTasksError,
-} from 'features/tasks/taskSlice';
-import {
-  useAppDispatch,
-  // useAppSelector
-} from './hooks';
+import { useUsers } from 'shared/hooks/userUsers';
 
 import './styles/index.scss';
 
 function App() {
-  // const taskList = useAppSelector(selectTaskList);
-  // const isLoading = useAppSelector(selectTasksLoading);
-  // const error = useAppSelector(selectTasksError);
-  const dispatch = useAppDispatch();
+  const { taskList, isLoading, error } = useUsers();
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
+  console.log(taskList, isLoading, error);
 
   const handleToggle = useCallback(() => {
     setIsOpenSidebar(!isOpenSidebar);
   }, [isOpenSidebar]);
-
-  useEffect(() => {
-    dispatch(getTaskList());
-  }, [dispatch]);
 
   return (
     <div className={clsx('App', { isOpenSidebar })}>

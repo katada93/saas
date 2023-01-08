@@ -42,7 +42,6 @@ const userList = [
 
 export const UsersTable = () => {
   const [users, setUsers] = useState(userList);
-  console.log(users);
 
   const handleSort = (value: string) => {
     setUsers((prev) => {

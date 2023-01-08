@@ -61,60 +61,47 @@ export const getTaskByBranch = createAsyncThunk(
   },
 );
 
+const setError = (state: TasksState, action: any) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+const setLoading = (state: TasksState) => {
+  state.isLoading = true;
+  state.error = '';
+};
+
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {
-    tasksRequestFailed: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getTaskList.pending, (state) => {
-        state.isLoading = true;
-        state.error = '';
-      })
+      .addCase(getTaskList.pending, setLoading)
       .addCase(getTaskList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.taskList = action.payload;
         state.error = '';
       })
-      .addCase(getTaskList.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload as string;
-      })
-      .addCase(getTaskById.pending, (state) => {
-        state.isLoading = true;
-        state.error = '';
-      })
+      .addCase(getTaskList.rejected, setError)
+      .addCase(getTaskById.pending, setLoading)
       .addCase(getTaskById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.task = action.payload;
         state.error = '';
       })
-      .addCase(getTaskById.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload as string;
-      })
-      .addCase(getTaskByBranch.pending, (state) => {
-        state.isLoading = true;
-        state.error = '';
-      })
+      .addCase(getTaskById.rejected, setError)
+      .addCase(getTaskByBranch.pending, setLoading)
       .addCase(getTaskByBranch.fulfilled, (state, action) => {
         state.isLoading = false;
         state.task = action.payload;
         state.error = '';
       })
-      .addCase(getTaskByBranch.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload as string;
-      });
+      .addCase(getTaskByBranch.rejected, setError);
   },
 });
 
-// const { } = tasksSlice.actions;
+// const { setError } = tasksSlice.actions;
 
 // Селекторы
 
