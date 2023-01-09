@@ -11,6 +11,7 @@
     "max-line-length": 80,
     "declaration-empty-line-before": null,
     "custom-property-empty-line-before": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "linebreaks": "windows"
   }
 }
