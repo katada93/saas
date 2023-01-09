@@ -49,11 +49,11 @@ export const getTaskById = createAsyncThunk(
   },
 );
 
-export const getTaskByBranch = createAsyncThunk(
+export const getTaskListByBranch = createAsyncThunk(
   'tasks/getTaskByBranch',
   async (branchId: number | string, { rejectWithValue }) => {
     try {
-      const { data } = await TaskService.getByBranch({ branchId });
+      const { data } = await TaskService.getAllByBranch({ branchId });
       return data;
     } catch (error: any) {
       return rejectWithValue(error.message);
@@ -94,12 +94,12 @@ export const tasksSlice = createSlice({
         state.task = action.payload;
       })
       .addCase(getTaskById.rejected, setError)
-      .addCase(getTaskByBranch.pending, setLoading)
-      .addCase(getTaskByBranch.fulfilled, (state, action) => {
+      .addCase(getTaskListByBranch.pending, setLoading)
+      .addCase(getTaskListByBranch.fulfilled, (state, action) => {
         resetState(state);
-        state.task = action.payload;
+        state.taskList = action.payload;
       })
-      .addCase(getTaskByBranch.rejected, setError);
+      .addCase(getTaskListByBranch.rejected, setError);
   },
 });
 

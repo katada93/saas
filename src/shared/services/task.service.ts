@@ -17,7 +17,7 @@ export class TaskService {
     return apiInstance.get<Task>(TaskService.BASE_URL, { params });
   }
 
-  public static getByBranch(params: Params) {
-    return apiInstance.get<Task>(TaskService.BASE_URL, { params });
+  public static getAllByBranch(params: Params) {
+    return apiInstance.get<Task[]>(TaskService.BASE_URL, { params });
   }
 }
