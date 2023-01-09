@@ -26,37 +26,37 @@ const initialState: TasksState = {
 
 export const getTaskList = createAsyncThunk(
   'tasks/getTaskList',
-  async (_, thunkAPI) => {
+  async (_, { rejectWithValue }) => {
     try {
       const { data } = await TaskService.getAll();
 
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
 
 export const getTaskById = createAsyncThunk(
   'tasks/getTaskById',
-  async (id: number | string, thunkAPI) => {
+  async (id: number | string, { rejectWithValue }) => {
     try {
       const { data } = await TaskService.getById({ id });
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
 
 export const getTaskByBranch = createAsyncThunk(
   'tasks/getTaskByBranch',
-  async (branchId: number | string, thunkAPI) => {
+  async (branchId: number | string, { rejectWithValue }) => {
     try {
       const { data } = await TaskService.getByBranch({ branchId });
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
