@@ -15,7 +15,7 @@ export class TaskService {
   }
 
   public static getByBranch(branchId: number | string) {
-    return apiInstance.get(TaskService.BASE_URL, {
+    return apiInstance.get<Task>(TaskService.BASE_URL, {
       params: { branchId },
     });
   }
