@@ -5,21 +5,18 @@ import { Paper } from './Paper';
 
 describe('Компонент Paper', () => {
   it('Должен корректно отрендериться', () => {
-    render(<Paper>Тест</Paper>);
+    render(<Paper>test</Paper>);
   });
 
   it('Должен применяться класс Paper к корневому тегу div', () => {
-    const { container } = render(<Paper>Тест</Paper>);
-    const divElem = container.querySelector('div');
+    render(<Paper>test</Paper>);
 
-    expect(divElem).toHaveClass('Paper');
+    expect(screen.getByText('test')).toHaveClass('Paper');
   });
 
   it('Должен применяться класс className из пропса к корневому тегу div', () => {
-    const { container } = render(<Paper className="testClass">test</Paper>);
-    const divElem = container.querySelector('div');
-
-    expect(divElem).toHaveClass('testClass');
+    render(<Paper className="testClass">test</Paper>);
+    expect(screen.getByText('test')).toHaveClass('testClass');
   });
 
   it('Должен корректно отрендерить children', () => {
