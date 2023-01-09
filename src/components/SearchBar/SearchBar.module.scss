@@ -1,0 +1,45 @@
+.SearchBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  padding: 0 40px;
+  background-color: var(--color-white);
+  border-bottom: 1px solid #ebeff2;
+
+  .SearchIcon .BellIcon {
+    stroke: var(--color-icon-gray);
+  }
+
+  .Search {
+    display: flex;
+    align-items: center;
+
+    input {
+      margin-left: 12px;
+      color: #707683;
+      font-weight: 400;
+      font-size: 14px;
+      font-style: normal;
+      line-height: 20px;
+      letter-spacing: 0.01em;
+      border: none;
+      outline: none;
+
+      &:focus {
+        .SearchIcon {
+          stroke: blue; // не работает, разобраться
+        }
+      }
+
+      &::placeholder {
+        color: var(--color-gray);
+        font-weight: 400;
+        font-size: var(--text-small);
+        line-height: 18px;
+        letter-spacing: 0.01em;
+      }
+    }
+  }
+}
