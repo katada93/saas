@@ -1,6 +1,11 @@
 import { Task } from 'shared/models/task.model';
 import { apiInstance } from './base.service';
 
+interface Params {
+  id?: number | string;
+  branchId?: number | string;
+}
+
 export class TaskService {
   private static BASE_URL = 'tasks/';
 
@@ -8,15 +13,11 @@ export class TaskService {
     return apiInstance.get<Task[]>(TaskService.BASE_URL);
   }
 
-  public static getById(id: number | string) {
-    return apiInstance.get<Task>(TaskService.BASE_URL, {
-      params: { id },
-    });
+  public static getById(params: Params) {
+    return apiInstance.get<Task>(TaskService.BASE_URL, { params });
   }
 
-  public static getByBranch(branchId: number | string) {
-    return apiInstance.get<Task>(TaskService.BASE_URL, {
-      params: { branchId },
-    });
+  public static getByBranch(params: Params) {
+    return apiInstance.get<Task>(TaskService.BASE_URL, { params });
   }
 }
