@@ -4,6 +4,8 @@ import { ReactComponent as dashboard } from './dashboard.svg';
 import { ReactComponent as deals } from './deals.svg';
 import { ReactComponent as toggle } from './toggle.svg';
 import { ReactComponent as tasks } from './tasks.svg';
+import { ReactComponent as search } from './search.svg';
+import { ReactComponent as bell } from './bell.svg';
 
 export const icons = {
   chat,
@@ -12,4 +14,6 @@ export const icons = {
   deals,
   toggle,
   tasks,
+  search,
+  bell,
 };

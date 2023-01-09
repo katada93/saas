@@ -29,9 +29,10 @@ export const getTaskList = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await TaskService.getAll();
+
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -43,7 +44,7 @@ export const getTaskById = createAsyncThunk(
       const { data } = await TaskService.getById(id);
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -55,65 +56,52 @@ export const getTaskByBranch = createAsyncThunk(
       const { data } = await TaskService.getByBranch(branchId);
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
 
+const setError = (state: TasksState, action: any) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+const setLoading = (state: TasksState) => {
+  state.isLoading = true;
+  state.error = '';
+};
+
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {
-    tasksRequestFailed: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getTaskList.pending, (state) => {
-        state.isLoading = true;
-        state.error = '';
-      })
+      .addCase(getTaskList.pending, setLoading)
       .addCase(getTaskList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.taskList = action.payload;
         state.error = '';
       })
-      .addCase(getTaskList.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message || '';
-      })
-      .addCase(getTaskById.pending, (state) => {
-        state.isLoading = true;
-        state.error = '';
-      })
+      .addCase(getTaskList.rejected, setError)
+      .addCase(getTaskById.pending, setLoading)
       .addCase(getTaskById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.task = action.payload;
         state.error = '';
       })
-      .addCase(getTaskById.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message || '';
-      })
-      .addCase(getTaskByBranch.pending, (state) => {
-        state.isLoading = true;
-        state.error = '';
-      })
+      .addCase(getTaskById.rejected, setError)
+      .addCase(getTaskByBranch.pending, setLoading)
       .addCase(getTaskByBranch.fulfilled, (state, action) => {
         state.isLoading = false;
         state.task = action.payload;
         state.error = '';
       })
-      .addCase(getTaskByBranch.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message || '';
-      });
+      .addCase(getTaskByBranch.rejected, setError);
   },
 });
 
-// const { } = tasksSlice.actions;
+// const { setError } = tasksSlice.actions;
 
 // Селекторы
 
