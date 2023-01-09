@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import clsx from 'clsx';
 
 import { Paper, Icon, Button, Status } from 'shared/ui';
-import { Sidebar, UsersTable } from 'components';
+import { Sidebar, UsersTable, SearchBar } from 'components';
 import { useUsers } from 'shared/hooks/userUsers';
 
 import './styles/index.scss';
@@ -19,6 +19,7 @@ function App() {
   return (
     <div className={clsx('App', { isOpenSidebar })}>
       <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
+      <SearchBar value="" onChange={() => {}} placeholder="Search for task" />
 
       <div className="content">
         <Paper>
