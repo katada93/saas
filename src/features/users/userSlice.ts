@@ -102,6 +102,11 @@ const setLoading = (state: UserState) => {
   state.loading = true;
 };
 
+const resetState = (state: UserState) => {
+  state.error = '';
+  state.loading = false;
+};
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -112,18 +117,16 @@ export const userSlice = createSlice({
       // signUp
       .addCase(signUp.pending, setLoading)
       .addCase(signUp.fulfilled, (state, action) => {
+        resetState(state);
         state.user = action.payload;
-        state.loading = false;
-        state.error = '';
       })
       .addCase(signUp.rejected, setError)
 
       //   signIn
       .addCase(signIn.pending, setLoading)
       .addCase(signIn.fulfilled, (state, action) => {
+        resetState(state);
         state.token = action.payload;
-        state.loading = false;
-        state.error = '';
       })
       .addCase(signIn.rejected, setError)
 
@@ -131,8 +134,7 @@ export const userSlice = createSlice({
       .addCase(getAllUsers.pending, setLoading)
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.usersList = action.payload;
-        state.loading = false;
-        state.error = '';
+        resetState(state);
       })
       .addCase(getAllUsers.rejected, setError)
 
@@ -140,17 +142,15 @@ export const userSlice = createSlice({
       .addCase(getUsersByBranch.pending, setLoading)
       .addCase(getUsersByBranch.fulfilled, (state, action) => {
         state.usersList = action.payload;
-        state.loading = false;
-        state.error = '';
+        resetState(state);
       })
       .addCase(getUsersByBranch.rejected, setError)
 
       //   getById
       .addCase(getUserById.pending, setLoading)
       .addCase(getUserById.fulfilled, (state, action) => {
+        resetState(state);
         state.user = action.payload;
-        state.loading = false;
-        state.error = '';
       })
       .addCase(getUserById.rejected, setError);
   },
