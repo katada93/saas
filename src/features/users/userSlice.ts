@@ -63,7 +63,7 @@ export const getAllUsers = createAsyncThunk(
       const { data } = await UserService.getAll();
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -75,7 +75,7 @@ export const getUserById = createAsyncThunk(
       const { data } = await UserService.getById(id);
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -87,10 +87,20 @@ export const getUsersByBranch = createAsyncThunk(
       const { data } = await UserService.getByBranch(branchId);
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
+
+const setError = (state: UserState, action: any) => {
+  state.error = action.payload;
+  state.loading = false;
+};
+
+const setLoading = (state: UserState) => {
+  state.error = '';
+  state.loading = true;
+};
 
 export const userSlice = createSlice({
   name: 'user',
@@ -98,75 +108,50 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+
       // signUp
-      .addCase(signUp.pending, (state) => {
-        state.loading = true;
-        state.error = '';
-      })
+      .addCase(signUp.pending, setLoading)
       .addCase(signUp.fulfilled, (state, action) => {
         state.user = action.payload;
         state.loading = false;
         state.error = '';
       })
-      .addCase(signUp.rejected, (state, action) => {
-        state.error = action.error.message || '';
-        state.loading = false;
-      })
+      .addCase(signUp.rejected, setError)
+
       //   signIn
-      .addCase(signIn.pending, (state) => {
-        state.loading = true;
-        state.error = '';
-      })
+      .addCase(signIn.pending, setLoading)
       .addCase(signIn.fulfilled, (state, action) => {
         state.token = action.payload;
         state.loading = false;
         state.error = '';
       })
-      .addCase(signIn.rejected, (state, action) => {
-        state.error = action.error.message || '';
-        state.loading = false;
-      })
+      .addCase(signIn.rejected, setError)
+
       //   getAll
-      .addCase(getAllUsers.pending, (state) => {
-        state.loading = true;
-        state.error = '';
-      })
+      .addCase(getAllUsers.pending, setLoading)
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.usersList = action.payload;
         state.loading = false;
         state.error = '';
       })
-      .addCase(getAllUsers.rejected, (state, action) => {
-        state.error = action.error.message || '';
-        state.loading = false;
-      })
+      .addCase(getAllUsers.rejected, setError)
+
       //   getByBranch
-      .addCase(getUsersByBranch.pending, (state) => {
-        state.loading = true;
-        state.error = '';
-      })
+      .addCase(getUsersByBranch.pending, setLoading)
       .addCase(getUsersByBranch.fulfilled, (state, action) => {
         state.usersList = action.payload;
         state.loading = false;
         state.error = '';
       })
-      .addCase(getUsersByBranch.rejected, (state, action) => {
-        state.error = action.error.message || '';
-        state.loading = false;
-      })
+      .addCase(getUsersByBranch.rejected, setError)
+
       //   getById
-      .addCase(getUserById.pending, (state) => {
-        state.loading = true;
-        state.error = '';
-      })
+      .addCase(getUserById.pending, setLoading)
       .addCase(getUserById.fulfilled, (state, action) => {
         state.user = action.payload;
         state.loading = false;
         state.error = '';
       })
-      .addCase(getUserById.rejected, (state, action) => {
-        state.error = action.error.message || '';
-        state.loading = false;
-      });
+      .addCase(getUserById.rejected, setError);
   },
 });

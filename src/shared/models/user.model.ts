@@ -5,15 +5,15 @@ export interface User {
   payload: Object;
 }
 
-export type SingUpArgs = {
+export interface SingUpArgs {
   username: string;
   login: string;
   password: string;
   branchId: string;
-};
+}
 
-export type SingInArgs = {
+export interface SingInArgs {
   username: string;
   login: string;
   password: string;
-};
+}

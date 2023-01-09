@@ -2,7 +2,7 @@ import { User, SingUpArgs, SingInArgs } from 'shared/models/user.model';
 import { apiInstance } from './base.service';
 
 export class UserService {
-  private static BASE_URL = 'user/';
+  private static BASE_URL = 'users/';
 
   public static signUp({ username, login, password, branchId }: SingUpArgs) {
     return apiInstance.post('registration/', {
@@ -32,7 +32,7 @@ export class UserService {
   }
 
   public static getByBranch(branchId: number | string) {
-    return apiInstance.get(UserService.BASE_URL, {
+    return apiInstance.get<User[]>(UserService.BASE_URL, {
       params: { branchId },
     });
   }
