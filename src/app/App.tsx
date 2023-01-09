@@ -2,11 +2,10 @@ import { useState, useCallback } from 'react';
 import clsx from 'clsx';
 
 import { Paper, Icon, Button, Status } from 'shared/ui';
-import { Sidebar, UsersTable } from 'components';
+import { Sidebar, UsersTable, SearchBar } from 'components';
 import { useUsers } from 'shared/hooks/userUsers';
 
 import './styles/index.scss';
-import { SearchBar } from 'components/SearchBar/SearchBar';
 
 function App() {
   const { taskList, isLoading, error } = useUsers();
@@ -20,7 +19,7 @@ function App() {
   return (
     <div className={clsx('App', { isOpenSidebar })}>
       <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
-      <SearchBar placeholder="Search for task" />
+      <SearchBar value="" onChange={() => {}} placeholder="Search for task" />
 
       <div className="content">
         <Paper>

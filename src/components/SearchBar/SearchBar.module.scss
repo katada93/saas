@@ -8,7 +8,8 @@
   background-color: var(--color-white);
   border-bottom: 1px solid #ebeff2;
 
-  .SearchIcon .BellIcon {
+  .SearchIcon,
+  .BellIcon {
     stroke: var(--color-icon-gray);
   }
 
@@ -29,7 +30,7 @@
 
       &:focus {
         .SearchIcon {
-          stroke: blue; // не работает, разобраться
+          stroke: #109cf1; // не работает, разобраться
         }
       }
 
