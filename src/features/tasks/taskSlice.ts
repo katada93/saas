@@ -26,48 +26,53 @@ const initialState: TasksState = {
 
 export const getTaskList = createAsyncThunk(
   'tasks/getTaskList',
-  async (_, thunkAPI) => {
+  async (_, { rejectWithValue }) => {
     try {
       const { data } = await TaskService.getAll();
 
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
 
 export const getTaskById = createAsyncThunk(
   'tasks/getTaskById',
-  async (id: number | string, thunkAPI) => {
+  async (id: number | string, { rejectWithValue }) => {
     try {
-      const { data } = await TaskService.getById(id);
+      const { data } = await TaskService.getById({ id });
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
 
 export const getTaskByBranch = createAsyncThunk(
   'tasks/getTaskByBranch',
-  async (branchId: number | string, thunkAPI) => {
+  async (branchId: number | string, { rejectWithValue }) => {
     try {
-      const { data } = await TaskService.getByBranch(branchId);
+      const { data } = await TaskService.getByBranch({ branchId });
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
+
+const setLoading = (state: TasksState) => {
+  state.isLoading = true;
+  state.error = '';
+};
 
 const setError = (state: TasksState, action: any) => {
   state.isLoading = false;
   state.error = action.payload;
 };
 
-const setLoading = (state: TasksState) => {
-  state.isLoading = true;
+const resetState = (state: TasksState) => {
+  state.isLoading = false;
   state.error = '';
 };
 
@@ -79,29 +84,26 @@ export const tasksSlice = createSlice({
     builder
       .addCase(getTaskList.pending, setLoading)
       .addCase(getTaskList.fulfilled, (state, action) => {
-        state.isLoading = false;
+        resetState(state);
         state.taskList = action.payload;
-        state.error = '';
       })
       .addCase(getTaskList.rejected, setError)
       .addCase(getTaskById.pending, setLoading)
       .addCase(getTaskById.fulfilled, (state, action) => {
-        state.isLoading = false;
+        resetState(state);
         state.task = action.payload;
-        state.error = '';
       })
       .addCase(getTaskById.rejected, setError)
       .addCase(getTaskByBranch.pending, setLoading)
       .addCase(getTaskByBranch.fulfilled, (state, action) => {
-        state.isLoading = false;
+        resetState(state);
         state.task = action.payload;
-        state.error = '';
       })
       .addCase(getTaskByBranch.rejected, setError);
   },
 });
 
-// const { setError } = tasksSlice.actions;
+// const { } = tasksSlice.actions;
 
 // Селекторы
 
