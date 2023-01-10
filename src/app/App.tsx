@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import clsx from 'clsx';
 
-import { Paper, Icon, Button, Status } from 'shared/ui';
+import { Paper, Icon, Button, Status, Input } from 'shared/ui';
 import { Sidebar, UsersTable, SearchBar } from 'components';
 import { useUsers } from 'shared/hooks/userUsers';
 
@@ -10,6 +10,7 @@ import './styles/index.scss';
 function App() {
   const { taskList, isLoading, error } = useUsers();
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
+  const [text, setText] = useState('');
   console.log(taskList, isLoading, error);
 
   const handleToggle = useCallback(() => {
@@ -32,6 +33,13 @@ function App() {
         </Paper>
         <UsersTable />
       </div>
+      <Input
+        value={text}
+        placeholder="name"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setText(e.target.value)
+        }
+      />
     </div>
   );
 }
