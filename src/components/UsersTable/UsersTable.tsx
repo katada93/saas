@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Table } from 'shared/ui';
+import { compareString } from 'shared/utils';
 
 interface User {
   name: string;
@@ -43,13 +44,10 @@ const userList = [
 export const UsersTable = () => {
   const [users, setUsers] = useState(userList);
 
-  const handleSort = (value: string) => {
-    setUsers((prev) => {
-      const sorted = [...prev].sort((a, b) =>
-        a[value as keyof User].localeCompare(b[value as keyof User]),
-      );
-      return sorted;
-    });
+  const handleSort = (value: keyof User, sortType: 'asc' | 'desc') => {
+    setUsers((prev) =>
+      [...prev].sort((a, b) => compareString(a[value], b[value], sortType)),
+    );
   };
 
   const columns = [
@@ -62,5 +60,5 @@ export const UsersTable = () => {
     { value: 'recent', displayValue: 'Recent activity' },
   ];
 
-  return <Table header={columns} data={users} />;
+  return <Table<User> columns={columns} rows={users} />;
 };

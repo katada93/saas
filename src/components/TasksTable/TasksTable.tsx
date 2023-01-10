@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Table } from 'shared/ui';
+import { compareString } from 'shared/utils';
 
 interface Task {
   title: string;
@@ -36,13 +37,10 @@ const tasksList = [
 export const TasksTable = () => {
   const [tasks, setTasks] = useState(tasksList);
 
-  const handleSort = (value: string) => {
-    setTasks((prev) => {
-      const sorted = [...prev].sort((a, b) =>
-        a[value as keyof Task].localeCompare(b[value as keyof Task]),
-      );
-      return sorted;
-    });
+  const handleSort = (value: keyof Task, sortType: 'asc' | 'desc') => {
+    setTasks((prev) =>
+      [...prev].sort((a, b) => compareString(a[value], b[value], sortType)),
+    );
   };
 
   const columns = [
@@ -53,5 +51,5 @@ export const TasksTable = () => {
     { value: 'time', displayValue: 'Time' },
   ];
 
-  return <Table header={columns} data={tasks} />;
+  return <Table columns={columns} rows={tasks} />;
 };

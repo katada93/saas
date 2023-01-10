@@ -1,26 +1,37 @@
+import { useState } from 'react';
 import styles from './Table.module.scss';
 
 type DisplayValue = string | number | JSX.Element;
+type SortType = 'asc' | 'desc';
 
-interface TableProps {
-  header: Array<{
+interface TableProps<T> {
+  columns: Array<{
     value: string;
     displayValue: DisplayValue;
-    onSort?: (value: string, sort?: 'asc' | 'desc') => void;
+    onSort?: (value: keyof T, sortType: SortType) => void;
   }>;
-  data: Array<Record<string, DisplayValue>>;
+  rows: Array<Record<string, DisplayValue>>;
 }
 
-export const Table = ({ header, data }: TableProps) => {
+export const Table = <T,>({ columns, rows }: TableProps<T>) => {
+  const [sortType, setSortType] = useState<SortType>('asc');
+
+  const handleSort = (value: keyof T) => {
+    const column = columns.find((col) => col.value === value);
+
+    if (column && column.onSort) {
+      column.onSort(value, sortType);
+      setSortType(sortType === 'asc' ? 'desc' : 'asc');
+    }
+  };
+
   return (
     <table className={styles.Table}>
       <thead>
         <tr>
-          {header.map(({ value, displayValue, onSort }) => {
+          {columns.map(({ value, displayValue }) => {
             return (
-              <th
-                onClick={onSort ? () => onSort(value) : undefined}
-                key={value}>
+              <th onClick={() => handleSort(value as keyof T)} key={value}>
                 {displayValue}
               </th>
             );
@@ -28,10 +39,10 @@ export const Table = ({ header, data }: TableProps) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item, index) => (
+        {rows.map((item, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <tr key={index}>
-            {header.map(({ value }) => (
+            {columns.map(({ value }) => (
               <td key={value}>{item[value]}</td>
             ))}
           </tr>
