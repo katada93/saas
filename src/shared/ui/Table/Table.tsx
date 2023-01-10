@@ -1,28 +1,27 @@
 import { useState } from 'react';
+import { compareString } from 'shared/utils';
 import styles from './Table.module.scss';
 
-type DisplayValue = string | number | JSX.Element;
-type SortType = 'asc' | 'desc';
-
-interface TableProps<T> {
-  columns: Array<{
-    value: string;
-    displayValue: DisplayValue;
-    onSort?: (value: keyof T, sortType: SortType) => void;
-  }>;
-  rows: Array<Record<string, DisplayValue>>;
+type TableSortType = 'asc' | 'desc';
+interface TableColumn {
+  value: string;
+  displayValue: React.ReactNode;
+}
+type TableRow = Record<string, any>;
+interface TableProps {
+  columns: TableColumn[];
+  rows: TableRow[];
 }
 
-export const Table = <T,>({ columns, rows }: TableProps<T>) => {
-  const [sortType, setSortType] = useState<SortType>('asc');
+export const Table = ({ columns, rows }: TableProps) => {
+  const [sortType, setSortType] = useState<TableSortType>('asc');
+  const [data, setData] = useState(rows);
 
-  const handleSort = (value: keyof T) => {
-    const column = columns.find((col) => col.value === value);
-
-    if (column && column.onSort) {
-      column.onSort(value, sortType);
-      setSortType(sortType === 'asc' ? 'desc' : 'asc');
-    }
+  const handleSort = (value: string) => {
+    setData((prev) =>
+      [...prev].sort((a, b) => compareString(a[value], b[value], sortType)),
+    );
+    setSortType(sortType === 'asc' ? 'desc' : 'asc');
   };
 
   return (
@@ -31,7 +30,17 @@ export const Table = <T,>({ columns, rows }: TableProps<T>) => {
         <tr>
           {columns.map(({ value, displayValue }) => {
             return (
-              <th onClick={() => handleSort(value as keyof T)} key={value}>
+              <th
+                onClick={
+                  typeof displayValue === 'string' ||
+                  typeof displayValue === 'number'
+                    ? () => handleSort(value)
+                    : undefined
+                }
+                key={value}
+                role="columnheader"
+                tabIndex={0}
+                aria-sort={sortType === 'asc' ? 'ascending' : 'descending'}>
                 {displayValue}
               </th>
             );
@@ -39,11 +48,13 @@ export const Table = <T,>({ columns, rows }: TableProps<T>) => {
         </tr>
       </thead>
       <tbody>
-        {rows.map((item, index) => (
+        {data.map((item, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <tr key={index}>
+          <tr key={index} role="row" tabIndex={0}>
             {columns.map(({ value }) => (
-              <td key={value}>{item[value]}</td>
+              <td key={value} role="cell" tabIndex={-1}>
+                {item[value]}
+              </td>
             ))}
           </tr>
         ))}

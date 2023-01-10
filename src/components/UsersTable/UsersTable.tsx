@@ -1,15 +1,4 @@
-import { useState } from 'react';
 import { Table } from 'shared/ui';
-import { compareString } from 'shared/utils';
-
-interface User {
-  name: string;
-  email: string;
-  company: string;
-  role: string;
-  forecast: string;
-  recent: string;
-}
 
 const userList = [
   {
@@ -42,17 +31,9 @@ const userList = [
 ];
 
 export const UsersTable = () => {
-  const [users, setUsers] = useState(userList);
-
-  const handleSort = (value: keyof User, sortType: 'asc' | 'desc') => {
-    setUsers((prev) =>
-      [...prev].sort((a, b) => compareString(a[value], b[value], sortType)),
-    );
-  };
-
   const columns = [
     { value: 'select', displayValue: <input type="checkbox" /> },
-    { value: 'name', displayValue: 'Name', onSort: handleSort },
+    { value: 'name', displayValue: 'Name' },
     { value: 'email', displayValue: 'Email' },
     { value: 'company', displayValue: 'Company Name' },
     { value: 'role', displayValue: 'Role' },
@@ -60,5 +41,5 @@ export const UsersTable = () => {
     { value: 'recent', displayValue: 'Recent activity' },
   ];
 
-  return <Table<User> columns={columns} rows={users} />;
+  return <Table columns={columns} rows={userList} />;
 };
