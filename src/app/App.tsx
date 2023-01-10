@@ -6,6 +6,7 @@ import { Sidebar, UsersTable, SearchBar } from 'components';
 import { useUsers } from 'shared/hooks/userUsers';
 
 import './styles/index.scss';
+import { TasksTable } from 'components/TasksTable/TasksTable';
 
 function App() {
   const { taskList, isLoading, error } = useUsers();
@@ -31,6 +32,7 @@ function App() {
           <Status color="warning">Sent</Status>
         </Paper>
         <UsersTable />
+        <TasksTable />
       </div>
     </div>
   );
