@@ -7,7 +7,7 @@ import {
   getTaskList,
 } from 'features/tasks/taskSlice';
 
-export const useUsers = () => {
+export const useTasks = () => {
   const dispatch = useAppDispatch();
   const taskList = useAppSelector(selectTaskList);
   const isLoading = useAppSelector(selectTasksLoading);
