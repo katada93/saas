@@ -6,6 +6,7 @@ type TableSortType = 'asc' | 'desc';
 interface TableColumn {
   value: string;
   displayValue: React.ReactNode;
+  sortable?: boolean;
 }
 type TableRow = Record<string, any>;
 interface TableProps {
@@ -28,15 +29,10 @@ export const Table = ({ columns, rows }: TableProps) => {
     <table className={styles.Table}>
       <thead>
         <tr>
-          {columns.map(({ value, displayValue }) => {
+          {columns.map(({ value, displayValue, sortable }) => {
             return (
               <th
-                onClick={
-                  typeof displayValue === 'string' ||
-                  typeof displayValue === 'number'
-                    ? () => handleSort(value)
-                    : undefined
-                }
+                onClick={sortable ? () => handleSort(value) : undefined}
                 key={value}
                 role="columnheader"
                 tabIndex={0}

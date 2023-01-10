@@ -1,6 +1,14 @@
 import { Table } from 'shared/ui';
 
-const taskList = [
+interface Task {
+  title: string;
+  state: string;
+  branchId: string;
+  points: string;
+  time: string;
+}
+
+const taskList: Task[] = [
   {
     title: 'Тест таблицы1',
     state: 'lindsey@gmail.com',
@@ -24,14 +32,20 @@ const taskList = [
   },
 ];
 
-export const TasksTable = () => {
-  const columns = [
-    { value: 'title', displayValue: 'Name' },
-    { value: 'state', displayValue: 'State' },
-    { value: 'branchId', displayValue: 'Department' },
-    { value: 'points', displayValue: 'Points' },
-    { value: 'time', displayValue: 'Time' },
-  ];
+interface Column {
+  value: keyof Task;
+  displayValue: string | JSX.Element;
+  sortable?: boolean;
+}
 
+const columns: Column[] = [
+  { value: 'title', displayValue: 'Name', sortable: true },
+  { value: 'state', displayValue: 'State' },
+  { value: 'branchId', displayValue: 'Department' },
+  { value: 'points', displayValue: 'Points' },
+  { value: 'time', displayValue: 'Time' },
+];
+
+export const TasksTable = () => {
   return <Table columns={columns} rows={taskList} />;
 };

@@ -1,6 +1,15 @@
 import { Table } from 'shared/ui';
 
-const userList = [
+interface User {
+  name: string;
+  email: string;
+  company: string;
+  role: string;
+  forecast: string;
+  recent: string;
+}
+
+const userList: Array<Record<keyof User | 'select', React.ReactNode>> = [
   {
     name: 'West',
     email: 'lindsey@gmail.com',
@@ -30,16 +39,22 @@ const userList = [
   },
 ];
 
-export const UsersTable = () => {
-  const columns = [
-    { value: 'select', displayValue: <input type="checkbox" /> },
-    { value: 'name', displayValue: 'Name' },
-    { value: 'email', displayValue: 'Email' },
-    { value: 'company', displayValue: 'Company Name' },
-    { value: 'role', displayValue: 'Role' },
-    { value: 'forecast', displayValue: 'Forecast' },
-    { value: 'recent', displayValue: 'Recent activity' },
-  ];
+interface Column {
+  value: keyof User | 'select';
+  displayValue: string | JSX.Element;
+  sortable?: boolean;
+}
 
+const columns: Column[] = [
+  { value: 'select', displayValue: <input type="checkbox" /> },
+  { value: 'name', displayValue: 'Name', sortable: true },
+  { value: 'email', displayValue: 'Email', sortable: true },
+  { value: 'company', displayValue: 'Company Name' },
+  { value: 'role', displayValue: 'Role' },
+  { value: 'forecast', displayValue: 'Forecast' },
+  { value: 'recent', displayValue: 'Recent activity' },
+];
+
+export const UsersTable = () => {
   return <Table columns={columns} rows={userList} />;
 };
