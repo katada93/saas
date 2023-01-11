@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import clsx from 'clsx';
 import styles from './Input.module.scss';
 
 interface InputProps
@@ -9,12 +10,14 @@ interface InputProps
   type?: 'text' | 'password' | 'email';
   placeholder?: string;
   value: string;
+  className?: string;
 }
 
 export const Input = ({
+  className = '',
   type = 'text',
   placeholder = '',
-  value = '',
+  value,
   ...props
 }: InputProps) => {
   const [focus, setFocus] = useState(false);
@@ -22,9 +25,9 @@ export const Input = ({
   return (
     <div className={styles.InputWrapper}>
       <span
-        className={`${styles.placeholder} ${
-          focus || value ? styles.focused : ''
-        }`}>
+        className={clsx(className, styles.placeholder, {
+          [styles.focused]: focus || value,
+        })}>
         {placeholder}
       </span>
       <input
