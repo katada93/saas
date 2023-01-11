@@ -1,6 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from '@reduxjs/toolkit';
 import { UserService } from 'shared/services/user.service';
 import { SingInArgs, SingUpArgs, User } from 'shared/models/user.model';
+import { RootState } from 'app/store';
 
 export interface UserState {
   usersList: User[];
@@ -155,3 +160,29 @@ export const userSlice = createSlice({
       .addCase(getUserById.rejected, setError);
   },
 });
+
+// Selectors
+
+const selectUsersState = (state: RootState) => state.users;
+
+export const selectUsersList = createSelector(
+  selectUsersState,
+  (state) => state.usersList,
+);
+
+export const selectUser = createSelector(
+  selectUsersState,
+  (state) => state.user,
+);
+
+export const selectUsersLoading = createSelector(
+  selectUsersState,
+  (state) => state.loading,
+);
+
+export const selectUsersError = createSelector(
+  selectUsersState,
+  (state) => state.error,
+);
+
+export default userSlice.reducer;
