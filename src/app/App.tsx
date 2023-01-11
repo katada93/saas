@@ -35,7 +35,7 @@ function App() {
       </div>
       <Input
         value={text}
-        placeholder="name"
+        placeholder="ышг"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setText(e.target.value)
         }

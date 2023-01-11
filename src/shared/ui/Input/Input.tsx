@@ -13,7 +13,7 @@ interface InputProps
 
 export const Input = ({
   type = 'text',
-  placeholder = 'placeholder',
+  placeholder = '',
   value = '',
   ...props
 }: InputProps) => {
