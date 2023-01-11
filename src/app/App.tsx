@@ -6,11 +6,10 @@ import { Sidebar, UsersTable, SearchBar } from 'components';
 import { useUsers } from 'shared/hooks/userUsers';
 
 import './styles/index.scss';
+import { TasksTable } from 'components/TasksTable/TasksTable';
 
 function App() {
-  const { taskList, isLoading, error } = useUsers();
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
-  const [text, setText] = useState('');
   console.log(taskList, isLoading, error);
 
   const handleToggle = useCallback(() => {
@@ -31,14 +30,11 @@ function App() {
           <Status color="success">Scheduled</Status>
           <Status color="warning">Sent</Status>
         </Paper>
-        <UsersTable />
+        <TasksTable />
       </div>
       <Input
         value={text}
         placeholder="ышг"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setText(e.target.value)
-        }
       />
     </div>
   );

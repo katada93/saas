@@ -1,11 +1,12 @@
 export interface Task {
-  id: string;
+  _id: string;
   title: string;
   text: string;
   state: string;
-  userId: string;
-  branchId: string;
   points: number;
   time: number;
   message: string[];
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
 }

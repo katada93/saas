@@ -1,26 +1,42 @@
+import { useState } from 'react';
+import { compareString } from 'shared/utils';
 import styles from './Table.module.scss';
 
-type DisplayValue = string | number | JSX.Element;
-
+type TableSortType = 'asc' | 'desc';
+interface TableColumn {
+  value: string;
+  displayValue: React.ReactNode;
+  sortable?: boolean;
+}
+type TableRow = Record<string, any>;
 interface TableProps {
-  header: Array<{
-    value: string;
-    displayValue: DisplayValue;
-    onSort?: (value: string, sort?: 'asc' | 'desc') => void;
-  }>;
-  data: Array<Record<string, DisplayValue>>;
+  columns: TableColumn[];
+  rows: TableRow[];
 }
 
-export const Table = ({ header, data }: TableProps) => {
+export const Table = ({ columns, rows }: TableProps) => {
+  const [sortType, setSortType] = useState<TableSortType>('asc');
+  const [data, setData] = useState(rows);
+
+  const handleSort = (value: string) => {
+    setData((prev) =>
+      [...prev].sort((a, b) => compareString(a[value], b[value], sortType)),
+    );
+    setSortType(sortType === 'asc' ? 'desc' : 'asc');
+  };
+
   return (
     <table className={styles.Table}>
       <thead>
         <tr>
-          {header.map(({ value, displayValue, onSort }) => {
+          {columns.map(({ value, displayValue, sortable }) => {
             return (
               <th
-                onClick={onSort ? () => onSort(value) : undefined}
-                key={value}>
+                onClick={sortable ? () => handleSort(value) : undefined}
+                key={value}
+                role="columnheader"
+                tabIndex={0}
+                aria-sort={sortType === 'asc' ? 'ascending' : 'descending'}>
                 {displayValue}
               </th>
             );
@@ -30,9 +46,11 @@ export const Table = ({ header, data }: TableProps) => {
       <tbody>
         {data.map((item, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <tr key={index}>
-            {header.map(({ value }) => (
-              <td key={value}>{item[value]}</td>
+          <tr key={index} role="row" tabIndex={0}>
+            {columns.map(({ value }) => (
+              <td key={value} role="cell" tabIndex={-1}>
+                {item[value]}
+              </td>
             ))}
           </tr>
         ))}
