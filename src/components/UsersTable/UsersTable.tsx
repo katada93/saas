@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Table } from 'shared/ui';
 
 interface User {
@@ -10,7 +9,7 @@ interface User {
   recent: string;
 }
 
-const userList = [
+const userList: Array<Record<keyof User | 'select', React.ReactNode>> = [
   {
     name: 'West',
     email: 'lindsey@gmail.com',
@@ -40,27 +39,22 @@ const userList = [
   },
 ];
 
+interface Column {
+  value: keyof User | 'select';
+  displayValue: string | JSX.Element;
+  sortable?: boolean;
+}
+
+const columns: Column[] = [
+  { value: 'select', displayValue: <input type="checkbox" /> },
+  { value: 'name', displayValue: 'Name', sortable: true },
+  { value: 'email', displayValue: 'Email', sortable: true },
+  { value: 'company', displayValue: 'Company Name' },
+  { value: 'role', displayValue: 'Role' },
+  { value: 'forecast', displayValue: 'Forecast' },
+  { value: 'recent', displayValue: 'Recent activity' },
+];
+
 export const UsersTable = () => {
-  const [users, setUsers] = useState(userList);
-
-  const handleSort = (value: string) => {
-    setUsers((prev) => {
-      const sorted = [...prev].sort((a, b) =>
-        a[value as keyof User].localeCompare(b[value as keyof User]),
-      );
-      return sorted;
-    });
-  };
-
-  const columns = [
-    { value: 'select', displayValue: <input type="checkbox" /> },
-    { value: 'name', displayValue: 'Name', onSort: handleSort },
-    { value: 'email', displayValue: 'Email' },
-    { value: 'company', displayValue: 'Company Name' },
-    { value: 'role', displayValue: 'Role' },
-    { value: 'forecast', displayValue: 'Forecast' },
-    { value: 'recent', displayValue: 'Recent activity' },
-  ];
-
-  return <Table header={columns} data={users} />;
+  return <Table columns={columns} rows={userList} />;
 };
