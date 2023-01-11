@@ -1,14 +1,16 @@
 import { useState, useCallback } from 'react';
 import clsx from 'clsx';
 
-import { Paper, Icon, Button, Status } from 'shared/ui';
-import { Sidebar, SearchBar } from 'components';
+import { Paper, Icon, Button, Status, Input } from 'shared/ui';
+import { Sidebar, UsersTable, SearchBar } from 'components';
+import { useTasks } from 'shared/hooks/useTasks';
 
 import './styles/index.scss';
-import { TasksTable } from 'components/TasksTable/TasksTable';
 
 function App() {
+  const { taskList, isLoading, error } = useTasks();
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
+  console.log(taskList, isLoading, error);
 
   const handleToggle = useCallback(() => {
     setIsOpenSidebar(!isOpenSidebar);
@@ -28,8 +30,9 @@ function App() {
           <Status color="success">Scheduled</Status>
           <Status color="warning">Sent</Status>
         </Paper>
-        <TasksTable />
+        <UsersTable />
       </div>
+      <Input value="text" placeholder="ышг" />
     </div>
   );
 }
