@@ -1,0 +1,32 @@
+.InputWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  font-size: var(--text-large);
+  box-shadow: 0 3px 0 -2px var(--color-icon-gray);
+
+  .placeholder {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    color: var(--color-gray);
+    transition: 0.2s;
+  }
+
+  .focused {
+    top: -12px;
+    left: 20px;
+    color: #109cf1;
+    font-size: 12px;
+  }
+
+  .Input {
+    width: 100%;
+    padding: 5px;
+    font-size: var(--text-large);
+    background: transparent;
+    border: 0;
+    outline: 0;
+    transition: 0.2s;
+  }
+}
