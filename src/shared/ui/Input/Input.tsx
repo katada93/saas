@@ -23,10 +23,13 @@ export const Input = ({
   const [focus, setFocus] = useState(false);
 
   return (
-    <div className={styles.InputWrapper}>
+    <div
+      className={clsx(styles.InputWrapper, {
+        [styles.inputFocused]: focus,
+      })}>
       <span
         className={clsx(className, styles.placeholder, {
-          [styles.focused]: focus || value,
+          [styles.placeholderFocused]: focus || value,
         })}>
         {placeholder}
       </span>

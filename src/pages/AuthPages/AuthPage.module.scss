@@ -1,0 +1,33 @@
+.AuthPage {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 80px;
+  }
+
+  .inputsWrapper {
+    width: 100%;
+    margin: 0 auto;
+
+    div {
+      margin: 0 auto;
+    }
+
+    div:not(:last-child) {
+      margin-bottom: 50px;
+    }
+
+    input,
+    div {
+      font-size: 22px;
+    }
+  }
+
+  .question {
+    margin-top: 20px;
+    font-weight: 500;
+  }
+}

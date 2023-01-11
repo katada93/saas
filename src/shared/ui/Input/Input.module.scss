@@ -1,9 +1,10 @@
 .InputWrapper {
   position: relative;
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
   font-size: var(--text-large);
   box-shadow: 0 3px 0 -2px var(--color-icon-gray);
+  transition: 0.2s;
 
   .placeholder {
     position: absolute;
@@ -11,9 +12,10 @@
     left: 5px;
     color: var(--color-gray);
     transition: 0.2s;
+    pointer-events: none;
   }
 
-  .focused {
+  .placeholderFocused {
     top: -12px;
     left: 20px;
     color: #109cf1;
@@ -29,4 +31,8 @@
     outline: 0;
     transition: 0.2s;
   }
+}
+
+.inputFocused {
+  box-shadow: 0 3px 0 -2px #818e9b;
 }
