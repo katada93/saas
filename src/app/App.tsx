@@ -1,11 +1,10 @@
 import { useState, useCallback } from 'react';
 import clsx from 'clsx';
 
-import { Paper } from 'shared/ui';
-import { Sidebar, SearchBar } from 'components';
+import { Sidebar } from 'components';
+import { TaskListPage } from 'pages';
 
 import './styles/index.scss';
-import { TasksTable } from 'components/TasksTable/TasksTable';
 
 function App() {
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
@@ -17,13 +16,8 @@ function App() {
   return (
     <div className={clsx('App', { isOpenSidebar })}>
       <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
-      <SearchBar value="" onChange={() => {}} placeholder="Search for task" />
 
-      <div className="content">
-        <Paper>
-          <TasksTable />
-        </Paper>
-      </div>
+      <TaskListPage />
     </div>
   );
 }
