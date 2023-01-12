@@ -8,7 +8,7 @@ import { SingInArgs, SingUpArgs, User } from 'shared/models/user.model';
 import { RootState } from 'app/store';
 
 export interface UserState {
-  usersList: User[];
+  userList: User[];
   user: User;
   token: string | null;
   payload: Object;
@@ -17,7 +17,7 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  usersList: [],
+  userList: [],
   user: {} as User,
   token: null,
   payload: {},
@@ -138,7 +138,7 @@ export const userSlice = createSlice({
       //   getAll
       .addCase(getAllUsers.pending, setLoading)
       .addCase(getAllUsers.fulfilled, (state, action) => {
-        state.usersList = action.payload;
+        state.userList = action.payload;
         resetState(state);
       })
       .addCase(getAllUsers.rejected, setError)
@@ -146,7 +146,7 @@ export const userSlice = createSlice({
       //   getByBranch
       .addCase(getUsersByBranch.pending, setLoading)
       .addCase(getUsersByBranch.fulfilled, (state, action) => {
-        state.usersList = action.payload;
+        state.userList = action.payload;
         resetState(state);
       })
       .addCase(getUsersByBranch.rejected, setError)
@@ -167,7 +167,7 @@ const selectUsersState = (state: RootState) => state.users;
 
 export const selectUsersList = createSelector(
   selectUsersState,
-  (state) => state.usersList,
+  (state) => state.userList,
 );
 
 export const selectUser = createSelector(

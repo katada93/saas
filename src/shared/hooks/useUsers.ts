@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import {
   getAllUsers,
@@ -5,16 +6,19 @@ import {
   selectUsersList,
   selectUsersLoading,
 } from 'features/users/userSlice';
-import { useEffect } from 'react';
 
 export const useUsers = () => {
   const dispatch = useAppDispatch();
-  const usersList = useAppSelector(selectUsersList);
+  const userList = useAppSelector(selectUsersList);
   const isLoading = useAppSelector(selectUsersLoading);
   const error = useAppSelector(selectUsersError);
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
-  return { usersList, isLoading, error };
+
+  return useMemo(
+    () => ({ userList, isLoading, error }),
+    [error, isLoading, userList],
+  );
 };

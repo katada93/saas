@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useAppSelector, useAppDispatch } from 'app/store/hooks';
 import {
   selectTaskList,
@@ -17,5 +17,8 @@ export const useTasks = () => {
     dispatch(getTaskList());
   }, [dispatch]);
 
-  return { taskList, isLoading, error };
+  return useMemo(
+    () => ({ taskList, isLoading, error }),
+    [error, isLoading, taskList],
+  );
 };

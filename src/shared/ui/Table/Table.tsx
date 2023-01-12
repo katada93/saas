@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { compareString } from 'shared/utils';
+import { compare } from 'shared/utils';
 import styles from './Table.module.scss';
 
 type TableSortType = 'asc' | 'desc';
@@ -20,7 +20,7 @@ export const Table = ({ columns, rows }: TableProps) => {
 
   const handleSort = (value: string) => {
     setData((prev) =>
-      [...prev].sort((a, b) => compareString(a[value], b[value], sortType)),
+      [...prev].sort((a, b) => compare(a[value], b[value], sortType)),
     );
     setSortType(sortType === 'asc' ? 'desc' : 'asc');
   };

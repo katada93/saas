@@ -1,7 +1,15 @@
-export const compareString = (
-  str1: string,
-  str2: string,
+export const compare = (
+  a: string | number,
+  b: string | number,
   sort: 'asc' | 'desc',
 ) => {
-  return sort === 'asc' ? str1.localeCompare(str2) : str2.localeCompare(str1);
+  if (typeof a === 'string' && typeof b === 'string') {
+    return sort === 'asc' ? a.localeCompare(b) : b.localeCompare(a);
+  }
+
+  if (typeof a === 'number' && typeof b === 'number') {
+    return sort === 'asc' ? a - b : b - a;
+  }
+
+  return 0;
 };
