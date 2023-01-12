@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 import clsx from 'clsx';
 
+import { Routing } from 'pages';
 import { Sidebar } from 'components';
-import { TaskListPage } from 'pages';
 
 import './styles/index.scss';
 
@@ -16,8 +16,7 @@ function App() {
   return (
     <div className={clsx('App', { isOpenSidebar })}>
       <Sidebar isOpen={isOpenSidebar} onToggle={handleToggle} />
-
-      <TaskListPage />
+      <Routing />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { Button } from 'shared/ui';
 import { TaskNotes } from 'components/TaskNotes/TaskNotes';
 import styles from './TaskPage.module.scss';
 
-export const TaskPage = () => {
+const TaskPage = () => {
   return (
     <div className={styles.TaskPage}>
       <h1>Заголовок задачи</h1>
@@ -42,3 +42,5 @@ export const TaskPage = () => {
     </div>
   );
 };
+
+export default TaskPage;
