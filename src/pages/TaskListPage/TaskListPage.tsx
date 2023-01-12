@@ -2,7 +2,7 @@ import { SearchBar, TasksTable } from 'components';
 
 import styles from './TaskListPage.module.scss';
 
-export const TaskListPage = () => {
+const TaskListPage = () => {
   return (
     <div className={styles.TaskListPage}>
       <SearchBar placeholder="Search for a task" value="" onChange={() => {}} />
@@ -12,3 +12,5 @@ export const TaskListPage = () => {
     </div>
   );
 };
+
+export default TaskListPage;
