@@ -13,3 +13,9 @@ export const compare = (
 
   return 0;
 };
+
+export const prepare = (obj: any) => {
+  const { __v, updatedAt, _id: id, ...shorted } = obj;
+
+  return { ...shorted, id };
+};

@@ -1,4 +1,4 @@
-export interface Task {
+export interface TaskDB {
   _id: string;
   title: string;
   text: string;
@@ -10,3 +10,5 @@ export interface Task {
   updatedAt: Date;
   __v: number;
 }
+
+export type Task = Omit<TaskDB, '__v' | 'updatedAt' | '_id'> & { id: string };

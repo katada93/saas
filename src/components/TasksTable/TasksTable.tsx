@@ -1,9 +1,9 @@
 import { useTasks } from 'shared/hooks/useTasks';
-import { Task } from 'shared/models/task.model';
+import { TaskDB } from 'shared/models/task.model';
 import { Table } from 'shared/ui';
 
 interface Column {
-  value: keyof Task;
+  value: keyof TaskDB;
   displayValue: string | JSX.Element;
   sortable?: boolean;
 }

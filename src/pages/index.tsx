@@ -16,7 +16,7 @@ const ROUTELIST = [
 
 export const Routing = () => {
   return (
-    <Suspense fallback={<h2>Loading...</h2>}>
+    <Suspense fallback={<h3>Loading...</h3>}>
       <Routes>
         {ROUTELIST.map(({ key, path, Page }) => (
           <Route key={key} path={path} element={<Page />} />

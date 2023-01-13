@@ -7,6 +7,7 @@ import {
 import { RootState } from 'app/store';
 import { Task } from 'shared/models/task.model';
 import { TaskService } from 'shared/services/task.service';
+import { prepare } from 'shared/utils';
 
 export interface TasksState {
   taskList: Task[];
@@ -84,20 +85,26 @@ export const tasksSlice = createSlice({
     builder
       .addCase(getTaskList.pending, setLoading)
       .addCase(getTaskList.fulfilled, (state, action) => {
+        const prepared: Task[] = action.payload.map((task) => prepare(task));
+
         resetState(state);
-        state.taskList = action.payload;
+        state.taskList = prepared;
       })
       .addCase(getTaskList.rejected, setError)
       .addCase(getTaskById.pending, setLoading)
       .addCase(getTaskById.fulfilled, (state, action) => {
+        const prepared: Task = prepare(action.payload);
+
         resetState(state);
-        state.task = action.payload;
+        state.task = prepared;
       })
       .addCase(getTaskById.rejected, setError)
       .addCase(getTaskListByBranch.pending, setLoading)
       .addCase(getTaskListByBranch.fulfilled, (state, action) => {
+        const prepared: Task[] = action.payload.map((task) => prepare(task));
+
         resetState(state);
-        state.taskList = action.payload;
+        state.taskList = prepared;
       })
       .addCase(getTaskListByBranch.rejected, setError);
   },

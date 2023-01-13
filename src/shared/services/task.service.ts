@@ -1,4 +1,4 @@
-import { Task } from 'shared/models/task.model';
+import { TaskDB } from 'shared/models/task.model';
 import { apiInstance } from './base.service';
 
 interface Params {
@@ -10,14 +10,14 @@ export class TaskService {
   private static BASE_URL = 'tasks/';
 
   public static getAll() {
-    return apiInstance.get<Task[]>(TaskService.BASE_URL);
+    return apiInstance.get<TaskDB[]>(TaskService.BASE_URL);
   }
 
   public static getById(params: Params) {
-    return apiInstance.get<Task>(TaskService.BASE_URL, { params });
+    return apiInstance.get<TaskDB>(TaskService.BASE_URL, { params });
   }
 
   public static getAllByBranch(params: Params) {
-    return apiInstance.get<Task[]>(TaskService.BASE_URL, { params });
+    return apiInstance.get<TaskDB[]>(TaskService.BASE_URL, { params });
   }
 }
