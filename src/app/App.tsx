@@ -3,10 +3,11 @@
 
 // import { Paper, Icon, Button, Status, Input } from 'shared/ui';
 // import { Sidebar, UsersTable, SearchBar } from 'components';
+import { SignInPage } from 'pages';
 import { useTasks } from 'shared/hooks/useTasks';
 
 import './styles/index.scss';
-import { SignUpPage } from 'pages';
+// import { SignUpPage } from 'pages';
 
 function App() {
   const { taskList, isLoading, error } = useTasks();
@@ -36,8 +37,8 @@ function App() {
       </div>
       <Input value="text" placeholder="ышг" /> */}
 
-      <SignUpPage />
-      {/* <SignInPage /> */}
+      {/* <SignUpPage /> */}
+      <SignInPage />
     </div>
   );
 }

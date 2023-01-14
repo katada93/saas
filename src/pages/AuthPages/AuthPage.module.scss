@@ -1,22 +1,28 @@
 .AuthPage {
   position: absolute;
   top: 10%;
+  left: 50%;
   width: 100%;
+  max-width: 500px;
   text-align: center;
+  transform: translate(-50%);
 
   h1 {
     margin-bottom: 80px;
   }
 
   .inputsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     margin: 0 auto;
 
-    div {
-      margin: 0 auto;
+    select {
+      width: 100%;
     }
 
-    div:not(:last-child) {
+    div {
       margin-bottom: 50px;
     }
 

@@ -29,7 +29,7 @@ export const Input = ({
       })}>
       <span
         className={clsx(className, styles.placeholder, {
-          [styles.placeholderFocused]: focus || value,
+          [styles.focused]: focus || value,
         })}>
         {placeholder}
       </span>

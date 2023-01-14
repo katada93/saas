@@ -11,28 +11,36 @@ export const SignUpPage = () => {
     branchId: '',
   });
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+    console.log(data);
+  };
+
   return (
     <div className={styles.AuthPage}>
       <h1>Регистрация</h1>
       <form className={styles.inputsWrapper}>
         <Input
           value={data.username}
+          name="username"
           placeholder="Имя"
-          onChange={(e) => setData({ ...data, username: e.target.value })}
+          onChange={handleInputChange}
         />
         <Input
           value={data.login}
           placeholder="Логин"
+          name="login"
           type="email"
-          onChange={(e) => setData({ ...data, login: e.target.value })}
+          onChange={handleInputChange}
         />
         <Input
           value={data.password}
           placeholder="Пароль"
+          name="password"
           type="password"
-          onChange={(e) => setData({ ...data, password: e.target.value })}
+          onChange={handleInputChange}
         />
-        <Button>Зарегестирироваться</Button>
+        <Button>Зарегистрироваться</Button>
       </form>
       <div className={styles.question}>
         Уже есть аккаунт? <a href="a">Войти</a>
