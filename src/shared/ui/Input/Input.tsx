@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import clsx from 'clsx';
+
 import styles from './Input.module.scss';
 
 interface InputProps
@@ -13,6 +15,14 @@ interface InputProps
   className?: string;
 }
 
+const useFocus = () => {
+  const [focus, setFocus] = useState(false);
+  const onFocus = () => setFocus(true);
+  const onBlur = () => setFocus(false);
+
+  return { focus, onFocus, onBlur };
+};
+
 export const Input = ({
   className = '',
   type = 'text',
@@ -20,7 +30,7 @@ export const Input = ({
   value,
   ...props
 }: InputProps) => {
-  const [focus, setFocus] = useState(false);
+  const { focus, onFocus, onBlur } = useFocus();
 
   return (
     <div
@@ -38,8 +48,8 @@ export const Input = ({
         value={value}
         {...props}
         className={styles.Input}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
     </div>
   );
