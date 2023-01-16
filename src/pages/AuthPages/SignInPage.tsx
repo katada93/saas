@@ -1,6 +1,9 @@
-import { Button, Input } from 'shared/ui';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { Button, Input } from 'shared/ui';
 import { SingInArgs } from 'shared/models/user.model';
+
 import styles from './AuthPage.module.scss';
 
 const SignInPage = () => {
@@ -12,7 +15,6 @@ const SignInPage = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    console.log(data);
   };
 
   return (
@@ -42,7 +44,7 @@ const SignInPage = () => {
         <Button>Войти</Button>
       </form>
       <div className={styles.question}>
-        У вас нет аккаунта? <a href="a">Зарегистрироваться</a>
+        У вас нет аккаунта? <Link to="/signup">Зарегистрироваться</Link>
       </div>
     </div>
   );
