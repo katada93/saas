@@ -14,8 +14,12 @@ export const compare = (
   return 0;
 };
 
-export const prepare = (obj: any) => {
-  const { __v, updatedAt, _id: id, ...shorted } = obj;
+export const prepare = (obj: Record<string, any>, ...values: string[]) => {
+  const { _id, ...rest } = obj;
 
-  return { ...shorted, id };
+  values.forEach((value) => {
+    delete rest[value];
+  });
+
+  return { ...rest, id: _id };
 };

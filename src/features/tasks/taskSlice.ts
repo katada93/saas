@@ -85,7 +85,9 @@ export const tasksSlice = createSlice({
     builder
       .addCase(getTaskList.pending, setLoading)
       .addCase(getTaskList.fulfilled, (state, action) => {
-        const prepared: Task[] = action.payload.map((task) => prepare(task));
+        const prepared = action.payload.map((task) =>
+          prepare(task, 'updatedAt', '__v'),
+        ) as Task[];
 
         resetState(state);
         state.taskList = prepared;
@@ -93,7 +95,7 @@ export const tasksSlice = createSlice({
       .addCase(getTaskList.rejected, setError)
       .addCase(getTaskById.pending, setLoading)
       .addCase(getTaskById.fulfilled, (state, action) => {
-        const prepared: Task = prepare(action.payload);
+        const prepared = prepare(action.payload) as Task;
 
         resetState(state);
         state.task = prepared;
@@ -101,7 +103,7 @@ export const tasksSlice = createSlice({
       .addCase(getTaskById.rejected, setError)
       .addCase(getTaskListByBranch.pending, setLoading)
       .addCase(getTaskListByBranch.fulfilled, (state, action) => {
-        const prepared: Task[] = action.payload.map((task) => prepare(task));
+        const prepared = action.payload.map((task) => prepare(task)) as Task[];
 
         resetState(state);
         state.taskList = prepared;
